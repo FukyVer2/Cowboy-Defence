@@ -12,18 +12,25 @@ public class BaseGunObject : BaseObject {
     public int cartridgeBoxSize; //Dung tich cau hop dan
     public GameObject bulletOfGun; //Thong so chi dan ma sung nay su dung
 
-    protected bool allowShoot; //Duoc phep ban hay chua
+    public bool allowShoot; //Duoc phep ban hay chua
     protected bool reloading; //Dang thay dan
     protected int quantumOfBullet; // So luong dan con lai trong hop
 
     public int quantumOfCartridgeBox;
     public bool isActive; //Sung co con ban duoc khong
+    public Transform bulletSpawnPosition; //Vi tri sinh ra bullet
+
+    //public Animator gunAnimator; //Animator cua gun
+    //public float animationSpeed; //Toc do chuyen frame trang thai ban
+    //public float totalFrame; //Tong so Frame
+    //public int frameSpawnShoot; //Frame spawn ra dan
 
 
     public override void InitObject()
     {
         isActive = true;
         reloading = false;
+        allowShoot = true;
         ReloadBullet();
     }
 
@@ -45,17 +52,28 @@ public class BaseGunObject : BaseObject {
     //Ham spawn dan
     public void SpawnOfBullet()
     {
-        if (quantumOfBullet > 0)
+        if (quantumOfBullet > 0 && allowShoot)
         {
             //Tao mot vien dan tai day
-            BaseBulletObject baseBullet = null;
-            baseBullet.InitObject();
-            baseBullet.BulletType = bulletType;
-            baseBullet.ObjectUseType = objectUseType;
-            baseBullet.Damge = dameOfGun;
-            baseBullet.ResetValueOfAvariable();
-            quantumOfBullet -= 1;
-            Invoke("WaitShoot", timeSpawnBullet);
+            GameObject bullet = PoolCustomize.Instance.GetBaseObject(bulletOfGun, bulletSpawnPosition.position, "Bullet");
+            if (bullet != null)
+            {
+                BaseBulletObject baseBullet = bullet.GetComponent<BaseBulletObject>();
+                baseBullet.InitObject();
+                baseBullet.BulletType = bulletType;
+                baseBullet.ObjectUseType = objectUseType;
+                baseBullet.Damge = dameOfGun;
+                baseBullet.ResetValueOfAvariable();
+                quantumOfBullet -= 1;
+                allowShoot = false;
+                Invoke("WaitShoot", timeSpawnBullet);
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.LogWarning("Khong co dan nay ba");
+#endif
+            }
         }
     }
 
@@ -81,10 +99,13 @@ public class BaseGunObject : BaseObject {
                 reloading = true;
             }
         }
+
+        //SpawnOfBullet();
     }
 
     public override void DestroyObject()
     {
         //Khi sung khong hoat dong nua thi deactive cay sung do di
     }
+
 }

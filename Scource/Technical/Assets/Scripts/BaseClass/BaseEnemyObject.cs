@@ -11,7 +11,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public virtual void InitStateMachine()
     {
         stateMachine = new StateMachine();
-        stateMachine.AddStateAction(BaseStateType.ES_IDLE, new EnemyIdleState(this))
+        stateMachine.AddStateAction(BaseStateType.ES_IDLE, new EnemyIdleState(this));
         stateMachine.AddStateAction(BaseStateType.ES_RUN, new EnemyRunState(this));
         stateMachine.AddStateAction(BaseStateType.ES_ATTACK, new EnemyAttackState(this));
         stateMachine.AddStateAction(BaseStateType.ES_DIE, new EnemyDieState(this));

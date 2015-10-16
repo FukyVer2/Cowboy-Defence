@@ -6,6 +6,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
     protected float damge; // Damge cua dan
     protected BaseBulletType bulletType; //Thong so chi loai dan
     protected BaseObjectType objectUseType; //Thong so chi loai dan nay do thang nao su dung
+    protected float angelShoot; //Goc ban cua vien dan
 
     public float Damge
     {
@@ -29,6 +30,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
     {
         base.InitObject();
         gameObjectType = BaseObjectType.OB_GUN;
+        positionBegin = transform.position;
     }
 
 
