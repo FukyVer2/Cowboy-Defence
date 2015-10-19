@@ -48,8 +48,11 @@ public class PoolCustomize : MonoSingleton<PoolCustomize> {
                 spawPool.Despawn(_prefab.transform);
             }
         }
+        else
+        {
 #if UNITY_EDITOR
-        Debug.LogWarning("Khong co pool nay bo oi! Lay dau ra ma cat cho bo ha! Hehe");
+            Debug.LogWarning("Khong co pool nay bo oi! Lay dau ra ma cat cho bo ha! Hehe");
 #endif
+        }
     }
 }

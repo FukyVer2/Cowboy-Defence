@@ -12,7 +12,7 @@ public class InputController : MonoSingleton<InputController>, IPointerDownHandl
         isPress = true;
         eventPosition = eventData.pressPosition;
         oldEventData = eventData;
-        GameController.Instance.playerGun.SpawnOfBullet();
+        //GameController.Instance.playerGun.SpawnOfBullet();
     }
 
     void Update()

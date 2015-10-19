@@ -6,6 +6,7 @@ public class BaseGunObject : BaseObject {
     public BaseGunType gunType; //Thong so chi ve loai sung
     public BaseBulletType bulletType; //Thong so chi loai dan duoc su dung
     public BaseObjectType objectUseType; //Thong so chi loai sung nay do thang nao su dung
+    public BaseDirectionType directionOfShoot; //Huong ban cua dan
     public float dameOfGun; //Thong so chi luong damge cua sung, do la damge cua dan
     public float timeSpawnBullet; //Thoi gian san sinh ra mot vien dan
     public float timeReloadBullet; //Thoi gian nap lai dan
@@ -63,6 +64,7 @@ public class BaseGunObject : BaseObject {
                 baseBullet.BulletType = bulletType;
                 baseBullet.ObjectUseType = objectUseType;
                 baseBullet.Damge = dameOfGun;
+                baseBullet.direction = directionOfShoot;
                 baseBullet.ResetValueOfAvariable();
                 quantumOfBullet -= 1;
                 allowShoot = false;

@@ -6,14 +6,14 @@ public class NormalBullet : BaseBulletObject {
     public override void InitObject()
     {
         base.InitObject();
-        direction = BaseDirectionType.UP;
+        //direction = BaseDirectionType.UP;
     }
 
-    public override void UpdateObject()
-    {
-        base.UpdateObject();
-        KillEnemies();
-    }
+    //public override void UpdateObject()
+    //{
+    //    base.UpdateObject();
+    //    KillEnemies();
+    //}
 
     public override void KillEnemies()
     {
@@ -67,6 +67,6 @@ public class NormalBullet : BaseBulletObject {
 
     public override void DestroyObject()
     {
-        
+        base.DestroyObject();
     }
 }
