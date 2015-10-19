@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TankerEnemy : MonoBehaviour {
+public class TankerEnemy : BaseEnemyObject {
 
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public override void KillPlayer()
+    {
+        throw new System.NotImplementedException();
+    }
 }

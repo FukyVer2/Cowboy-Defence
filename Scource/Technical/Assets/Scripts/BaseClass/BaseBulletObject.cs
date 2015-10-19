@@ -104,4 +104,12 @@ public abstract class BaseBulletObject : BaseMoveObject {
             PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "GroundBox")
+        {
+            PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
+        }
+    }
 }
