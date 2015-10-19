@@ -104,7 +104,7 @@ public class BaseGunObject : BaseObject {
                 reloading = true;
             }
         }
-
+        DestroyObject();
         //SpawnOfBullet();
     }
 
@@ -118,6 +118,6 @@ public class BaseGunObject : BaseObject {
         float angle = BaseUtilExtentions.Instance.CalAngleWithTarget(transform, _position);
         angleShoot = angle;
         BaseUtilExtentions.Instance.Rotate(transform, angle - 90);
-        Debug.Log("Goc quay cua sung: " + angle);
+        //Debug.Log("Goc quay cua sung: " + angle);
     }
 }

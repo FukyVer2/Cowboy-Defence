@@ -116,7 +116,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
         {
             BaseEnemyObject baseEnemy = other.gameObject.GetComponent<BaseEnemyObject>();
             baseEnemy.ReceiveDamge(damge);
-
+            PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
         }
     }
 }

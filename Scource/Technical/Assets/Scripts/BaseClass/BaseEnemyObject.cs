@@ -7,6 +7,12 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public float healthPoint; //Thong so chi luong mau cua enemy
     public BaseStateType stateCurrent; //Trang thai hien tai cua Enemy
     public StateMachine stateMachine; //Day la may chuyen trang thai cua thang enemy
+    public Animator baseEnemyAnimator; //Quan ly trang thai cua enemy
+
+    public bool attacking;  //dang danh
+    public float timeAttack; //thoi gian danh
+    public float timeWaitAttack; //thoi gian cho chuyen sang trang thai danh
+    public BaseWallObject wallTarget; //Wall dang danh
 
     public virtual void InitStateMachine()
     {
@@ -23,7 +29,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
         gameObjectType = BaseObjectType.OB_ENEMY;
         positionBegin = transform.position;
         InitStateMachine();
-        stateMachine.ChangeState(BaseStateType.ES_RUN);
+        stateMachine.ChangeState(BaseStateType.ES_IDLE);
     }
 
     public override void UpdateObject()
@@ -36,7 +42,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
 
     public override void Move()
     {
-        
+
     }
 
     public override void DestroyObject()
@@ -45,6 +51,14 @@ public abstract class BaseEnemyObject : BaseMoveObject
     }
 
     public abstract void ReceiveDamge(float damge);
+
+    public abstract void Run();
+
+    public abstract void Attack();
+
+    public abstract void Idle();
+
+    public abstract void Die();
 }
 
 class EnemyIdleState : IState
@@ -57,17 +71,17 @@ class EnemyIdleState : IState
 
     public void BeginState()
     {
-        
+        enemyObject.baseEnemyAnimator.SetBool("IsIdle", true);
     }
 
     public void UpdateState()
     {
-       
+        enemyObject.Idle();
     }
 
     public void EndState()
     {
-        
+        enemyObject.baseEnemyAnimator.SetBool("IsIdle", false);
     }
 }
 
@@ -81,17 +95,17 @@ class EnemyAttackState : IState
 
     public void BeginState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsAttack", true);
     }
 
     public void UpdateState()
     {
-
+        enemyObject.Attack();
     }
 
     public void EndState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsAttack", false);
     }
 }
 
@@ -105,17 +119,17 @@ class EnemyRunState : IState
 
     public void BeginState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsRun", true);
     }
 
     public void UpdateState()
     {
-        enemyObject.Move();
+        enemyObject.Run();
     }
 
     public void EndState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsRun", false);
     }
 }
 
@@ -129,17 +143,17 @@ class EnemyDieState : IState
 
     public void BeginState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsDie", true);
     }
 
     public void UpdateState()
     {
-
+        enemyObject.Die();
     }
 
     public void EndState()
     {
-
+        enemyObject.baseEnemyAnimator.SetBool("IsDie", false);
     }
 }
 

@@ -57,4 +57,107 @@ public class TankerEnemy : BaseEnemyObject {
     {
         this.healthPoint -= damge;
     }
+
+    public void AllowAttack()
+    {
+        stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+    }
+
+    public void AllowIdle()
+    {
+        stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+    }
+
+    public override void Attack()
+    {
+        if (healthPoint <= 0)
+        {
+            stateMachine.ChangeState(BaseStateType.ES_DIE);
+        }
+        else
+        {
+            Invoke("AllowIdle", timeAttack);
+        }
+    }
+
+    public override void Idle()
+    {
+        if (healthPoint <= 0)
+        {
+            stateMachine.ChangeState(BaseStateType.ES_DIE);
+        }
+        else
+        {
+            if (attacking)
+            {
+                Invoke("AllowAttack", timeWaitAttack);
+            }
+            else
+            {
+                stateMachine.ChangeState(BaseStateType.ES_RUN);
+            }
+        }
+    }
+
+    public override void Die()
+    {
+        DestroyObject();
+    }
+
+    public override void Run()
+    {
+        if (healthPoint <= 0)
+        {
+            stateMachine.ChangeState(BaseStateType.ES_DIE);
+        }
+        else
+        {
+            Move();
+        }
+    }
+
+    public void GiveDamge()
+    {
+        Debug.Log("Cho damge");
+        if (wallTarget != null)
+        {
+            if (wallTarget.healthPoint > 0)
+            {
+                wallTarget.ReceiveDamge(this.damge);
+
+                if (wallTarget.healthPoint <= 0)
+                {
+                    Destroy(wallTarget.gameObject);
+                    wallTarget = null;
+                    attacking = false;
+                    stateMachine.ChangeState(BaseStateType.ES_RUN);
+                }
+            }
+        }
+        else
+        {
+            wallTarget = null;
+            attacking = false;
+            stateMachine.ChangeState(BaseStateType.ES_RUN);
+        }
+    }
+
+    public override void DestroyObject()
+    {
+        base.DestroyObject();
+        Destroy(gameObject);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Wall")
+        {
+            
+            stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+            this.attacking = true;
+            BaseWallObject baseWallObject = other.gameObject.GetComponent<BaseWallObject>();
+            wallTarget = baseWallObject;
+            //baseWallObject.ReceiveDamge(this.damge);
+        }
+    }
 }

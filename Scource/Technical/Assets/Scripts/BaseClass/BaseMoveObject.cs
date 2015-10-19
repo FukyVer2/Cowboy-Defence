@@ -8,8 +8,8 @@ public abstract class BaseMoveObject : BaseObject, IMovement {
     public float accelerationNormalX; // Gia toc X
     public float accelerationNormalY; // Gia toc Y
 
-    protected float vx; // Van toc X tuc thoi
-    protected float vy; // Van toc Y tuc thoi
+    public float vx; // Van toc X tuc thoi
+    public float vy; // Van toc Y tuc thoi
 
     public BaseDirectionType direction; // Huong di chuyen
 

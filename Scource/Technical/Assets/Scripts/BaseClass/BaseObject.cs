@@ -35,7 +35,7 @@ public abstract class BaseObject : MonoBehaviour {
 	
 	void Update () {
         this.UpdateObject();
-        this.DestroyObject();
+        //this.DestroyObject();
 	}
 
     /// <summary>
