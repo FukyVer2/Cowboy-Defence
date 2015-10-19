@@ -6,6 +6,7 @@ public class NormalBullet : BaseBulletObject {
     public override void InitObject()
     {
         base.InitObject();
+        
         //direction = BaseDirectionType.UP;
     }
 

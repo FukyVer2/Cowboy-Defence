@@ -12,7 +12,12 @@ public class InputController : MonoSingleton<InputController>, IPointerDownHandl
         isPress = true;
         eventPosition = eventData.pressPosition;
         oldEventData = eventData;
-        //GameController.Instance.playerGun.SpawnOfBullet();
+#if UNITY_EDITOR
+        Debug.Log("Toa do diem click" + Camera.main.ScreenToWorldPoint(eventData.position));
+#endif
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector3 newPosition = new Vector3(mousePosition.x, mousePosition.y, 0.0f);
+        GameController.Instance.playerGun.GunShoot(newPosition);
     }
 
     void Update()

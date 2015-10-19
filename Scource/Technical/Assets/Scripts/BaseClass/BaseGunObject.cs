@@ -21,6 +21,8 @@ public class BaseGunObject : BaseObject {
     public bool isActive; //Sung co con ban duoc khong
     public Transform bulletSpawnPosition; //Vi tri sinh ra bullet
 
+    //Goc ban
+    public float angleShoot; //Day la goc ban cua cay sung
     //public Animator gunAnimator; //Animator cua gun
     //public float animationSpeed; //Toc do chuyen frame trang thai ban
     //public float totalFrame; //Tong so Frame
@@ -60,13 +62,14 @@ public class BaseGunObject : BaseObject {
             if (bullet != null)
             {
                 BaseBulletObject baseBullet = bullet.GetComponent<BaseBulletObject>();
-                baseBullet.InitObject();
                 baseBullet.BulletType = bulletType;
                 baseBullet.ObjectUseType = objectUseType;
                 baseBullet.Damge = dameOfGun;
+                baseBullet.AngelShoot = angleShoot;
                 baseBullet.direction = directionOfShoot;
-                baseBullet.ResetValueOfAvariable();
+                baseBullet.InitObject();
                 quantumOfBullet -= 1;
+                //baseBullet.ResetValueOfAvariable();
                 allowShoot = false;
                 Invoke("WaitShoot", timeSpawnBullet);
             }
@@ -110,4 +113,11 @@ public class BaseGunObject : BaseObject {
         //Khi sung khong hoat dong nua thi deactive cay sung do di
     }
 
+    public virtual void GunRotate(Vector3 _position)
+    {
+        float angle = BaseUtilExtentions.Instance.CalAngleWithTarget(transform, _position);
+        angleShoot = angle;
+        BaseUtilExtentions.Instance.Rotate(transform, angle - 90);
+        Debug.Log("Goc quay cua sung: " + angle);
+    }
 }

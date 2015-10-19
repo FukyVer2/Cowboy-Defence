@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoSingleton<GameController> {
 
-    public BaseGunObject playerGun;
+    public ControlGun playerGun;
 	// Update is called once per frame
 	void Update () {
 	

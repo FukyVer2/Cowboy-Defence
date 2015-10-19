@@ -6,8 +6,13 @@ public abstract class BaseBulletObject : BaseMoveObject {
     protected float damge; // Damge cua dan
     protected BaseBulletType bulletType; //Thong so chi loai dan
     protected BaseObjectType objectUseType; //Thong so chi loai dan nay do thang nao su dung
-    protected float angelShoot; //Goc ban cua vien dan
+    protected float angleShoot; //Goc ban cua vien dan
 
+    public float AngelShoot
+    {
+        get { return angleShoot; }
+        set { angleShoot = value; }
+    }
 
     public float Damge
     {
@@ -91,11 +96,11 @@ public abstract class BaseBulletObject : BaseMoveObject {
     {
         //Dua bullet vao lai trong Pool
         if (positionBegin.y <= Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y || 
-            positionBegin.y >= Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0.0f)).y)
+            positionBegin.y >= Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0.0f)).y ||
+            positionBegin.x <= Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x ||
+            positionBegin.x >= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0.0f)).x
+            )
         {
-#if UNITY_EDITOR
-            Debug.Log("Dan ra ngoai roi ba oi");
-#endif
             PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
         }
     }
