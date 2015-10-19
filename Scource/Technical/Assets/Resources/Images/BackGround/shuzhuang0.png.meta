@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 4ad47e85294dc7a4e80e5bee65aba055
+guid: 4e34703435097544a8e8225c6a79fe40
 TextureImporter:
   fileIDToRecycleName:
-    21300000: shuzhuang2_0
-    21300002: shuzhuang2_1
-    21300004: shuzhuang2_2
-    21300006: shuzhuang2_3
+    21300000: shuzhuang0_0
+    21300002: shuzhuang0_1
+    21300004: shuzhuang0_2
+    21300006: shuzhuang0_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -47,41 +47,41 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: shuzhuang2_0
+    - name: shuzhuang0_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 2
         width: 145
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: shuzhuang2_1
+    - name: shuzhuang0_1
       rect:
         serializedVersion: 2
         x: 145
-        y: 0
+        y: 2
         width: 145
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: shuzhuang2_2
+    - name: shuzhuang0_2
       rect:
         serializedVersion: 2
         x: 290
-        y: 0
+        y: 2
         width: 145
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: shuzhuang2_3
+    - name: shuzhuang0_3
       rect:
         serializedVersion: 2
         x: 435
-        y: 0
+        y: 2
         width: 145
         height: 68
       alignment: 0
