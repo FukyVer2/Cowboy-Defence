@@ -7,7 +7,7 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
     //public int frameSpawnShoot; //Frame spawn ra dan
     //private float animationSpeedBegin; //Toc do speed ban dau
     //private float animationSpeed; //Toc do speed o trang thai ban
-
+    public RangeOfGun rangeOfGun;
 
     public override void InitObject()
     {
@@ -18,7 +18,26 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
     public override void UpdateObject()
     {
         base.UpdateObject();
-        GunShoot();
+        if (rangeOfGun != null)
+        {
+            if (rangeOfGun.enemyInBoxs.Count != 0)
+            {
+                BaseEnemyObject baseEnemy = null;
+                for (int i = 0; i < rangeOfGun.enemyInBoxs.Count; ++i )
+                {
+                    baseEnemy = rangeOfGun.enemyInBoxs[i];
+                    if (baseEnemy.healthPoint <= 0)
+                    {
+                        rangeOfGun.enemyInBoxs.Remove(baseEnemy);
+                    }
+                    else
+                        break;
+                }
+                if(baseEnemy != null)
+                    GunShoot(baseEnemy.transform.position);
+            }
+        }
+        
     }
 
     public void GunStop()
@@ -38,6 +57,23 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
                 //gunAnimator.speed = animationSpeed;
                 gunAnimator.SetBool("isShoot", true);
                 //
+                this.SpawnOfBullet();
+            }
+        }
+    }
+
+    public void GunShoot(Vector3 enemyPosition)
+    {
+        if (isActive)
+        {
+            if (allowShoot && !reloading)
+            {
+                //this.CalAnimationSpeed();
+                //animationSpeedBegin = gunAnimator.speed;
+                //gunAnimator.speed = animationSpeed;
+                gunAnimator.SetBool("isShoot", true);
+                //
+                GunRotate(enemyPosition);
                 this.SpawnOfBullet();
             }
         }

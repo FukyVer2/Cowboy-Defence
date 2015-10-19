@@ -87,6 +87,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
     public override void UpdateObject()
     {
         base.UpdateObject();
+        this.Move();
         KillEnemies();
     }
 
@@ -110,6 +111,12 @@ public abstract class BaseBulletObject : BaseMoveObject {
         if (other.tag == "GroundBox")
         {
             PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
+        }
+        else if (other.tag == "Enemy")
+        {
+            BaseEnemyObject baseEnemy = other.gameObject.GetComponent<BaseEnemyObject>();
+            baseEnemy.ReceiveDamge(damge);
+
         }
     }
 }

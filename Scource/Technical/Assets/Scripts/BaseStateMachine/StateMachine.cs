@@ -35,7 +35,8 @@ public class StateMachine{
         IState state = GetStateAction(_baseStateType);
         if (state != null)
         {
-            stateCurrent.EndState();
+            if(stateCurrent != null)
+                stateCurrent.EndState();
             stateCurrent = state;
             stateCurrent.BeginState();
         }

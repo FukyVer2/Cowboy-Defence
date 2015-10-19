@@ -21,7 +21,9 @@ public abstract class BaseEnemyObject : BaseMoveObject
     {
         base.InitObject();
         gameObjectType = BaseObjectType.OB_ENEMY;
+        positionBegin = transform.position;
         InitStateMachine();
+        stateMachine.ChangeState(BaseStateType.ES_RUN);
     }
 
     public override void UpdateObject()
@@ -41,6 +43,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
     {
         
     }
+
+    public abstract void ReceiveDamge(float damge);
 }
 
 class EnemyIdleState : IState

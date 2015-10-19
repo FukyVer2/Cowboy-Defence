@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: f644fd384406776419f084ddd716e8ec
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: NPC_MimiS_0
+    21300002: NPC_MimiS_1
+    21300004: NPC_MimiS_2
+    21300006: NPC_MimiS_3
+    21300008: NPC_MimiS_4
+    21300010: NPC_MimiS_5
+    21300012: NPC_MimiS_6
+    21300014: NPC_MimiS_7
+    21300016: NPC_MimiS_8
+    21300018: NPC_MimiS_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: NPC_MimiS_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 57
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 57
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 57
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 57
+        width: 60
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_4
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 56
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 65
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_6
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 66
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_7
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 66
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_8
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 2
+        width: 49
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NPC_MimiS_9
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 23
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

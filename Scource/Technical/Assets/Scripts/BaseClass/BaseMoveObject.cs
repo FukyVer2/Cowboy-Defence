@@ -28,7 +28,7 @@ public abstract class BaseMoveObject : BaseObject, IMovement {
 
     public override void UpdateObject()
     {
-        this.Move();
+        //this.Move();
     }
 
     public abstract void Move();
