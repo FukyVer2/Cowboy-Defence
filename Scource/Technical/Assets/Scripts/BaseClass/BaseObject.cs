@@ -14,7 +14,6 @@ public abstract class BaseObject : MonoBehaviour {
     public string GetName()
     {
         return objectName;
-        
     }
 
     /// <summary>
@@ -25,8 +24,6 @@ public abstract class BaseObject : MonoBehaviour {
     {
         this.objectName = _objectName;
     }
-
-
 
 	void Start () {
         this.InitObject();

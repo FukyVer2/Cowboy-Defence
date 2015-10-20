@@ -13,19 +13,21 @@ public abstract class BaseMoveObject : BaseObject, IMovement {
 
     public BaseDirectionType direction; // Huong di chuyen
 
+    // cài đặt ban đầu
     public override void InitObject()
     {
         vx = velocityNormalX;
         vy = velocityNormalY;
-        
     }
 
+    // reset object về trạng thái ban đầu
     public virtual void ResetValueOfAvariable()
     {
         vx = velocityNormalX;
         vy = velocityNormalY;
     }
 
+    // update this
     public override void UpdateObject()
     {
         //this.Move();

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class StateMachine{
 
-    private IState stateCurrent;
-    private BaseStateType stateType;
+    private IState stateCurrent; // begin/update/end
+    private BaseStateType stateType; // idle/run/attack...
     private Dictionary<BaseStateType, IState> dicSystemState;
 
     public StateMachine()
