@@ -23,6 +23,8 @@ public class BaseWallObject : BaseObject {
 
     public override void DestroyObject()
     {
+        Debug.Log("destroy wall");
+        ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_WALL_FALL, transform.position);
         Destroy(gameObject);
     }
 }

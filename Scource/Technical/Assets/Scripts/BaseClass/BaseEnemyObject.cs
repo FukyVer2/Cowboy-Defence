@@ -9,7 +9,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public BaseStateType stateCurrent; //Trang thai hien tai cua Enemy
     public StateMachine stateMachine; //Day la may chuyen trang thai cua thang enemy
     public Animator baseEnemyAnimator; //Quan ly trang thai cua enemy
-
+    public bool isAlive;                // kiem tra song or chet
     public bool attacking;  //dang danh
     public float timeAttack; //thoi gian danh
     public float timeWaitAttack; //thoi gian cho chuyen sang trang thai danh
@@ -33,6 +33,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
         InitStateMachine();
         stateMachine.ChangeState(BaseStateType.ES_IDLE);
         healthPoint = healthBegin;
+        isAlive = true;
     }
 
     public override void ResetValueOfAvariable()
@@ -43,6 +44,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
             stateMachine.ChangeState(BaseStateType.ES_IDLE);
         healthPoint = healthBegin;
         attacking = false;
+        isAlive = true;
     }
 
     public override void UpdateObject()
@@ -145,6 +147,7 @@ class EnemyRunState : IState
         enemyObject.baseEnemyAnimator.SetBool("IsRun", false);
     }
 }
+
 
 class EnemyDieState : IState
 {

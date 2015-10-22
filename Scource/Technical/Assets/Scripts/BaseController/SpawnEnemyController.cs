@@ -45,7 +45,8 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
         float posX = Random.Range(spawnPositionLeft.position.x, spawnPositionRight.position.x);
         float posY = Random.Range(spawnPositionLeft.position.y, spawnPositionRight.position.y);
         Vector3 newPos = new Vector3(posX, posY, 0);
-        GameObject enemy = PoolCustomize.Instance.GetBaseObject(enemyPrefab, newPos, "Enemy");
+        //GameObject enemy = PoolCustomize.Instance.GetBaseObject(enemyPrefab, newPos, "Enemy");
+        GameObject enemy = ManagerObject.Instance.SpawnEnemy(BaseObjectType.OBE_ENEMY_TANKER, newPos);
         BaseEnemyObject baseEnemy = enemy.GetComponent<BaseEnemyObject>();
         baseEnemy.ResetValueOfAvariable();
     }

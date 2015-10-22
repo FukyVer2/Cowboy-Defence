@@ -65,7 +65,7 @@ public class TankerEnemy : BaseEnemyObject {
 
     public void AllowIdle()
     {
-        stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+        stateMachine.ChangeState(BaseStateType.ES_IDLE);
     }
 
     public override void Attack()
@@ -101,8 +101,11 @@ public class TankerEnemy : BaseEnemyObject {
 
     public override void Die()
     {
-        
-        Invoke("DestroyObject", 0.5f);
+        if (isAlive)
+        {
+            isAlive = false;
+            Invoke("DestroyObject", 0.2f);
+        }
     }
 
     public override void Run()
@@ -113,7 +116,12 @@ public class TankerEnemy : BaseEnemyObject {
         }
         else
         {
-            Move();
+            if (attacking)
+            {
+                stateMachine.ChangeState(BaseStateType.ES_IDLE);
+            }
+            else
+                Move();
         }
     }
 
@@ -128,7 +136,8 @@ public class TankerEnemy : BaseEnemyObject {
 
                 if (wallTarget.healthPoint <= 0)
                 {
-                    Destroy(wallTarget.gameObject);
+                    wallTarget.DestroyObject();
+                    //Destroy(wallTarget.gameObject);
                     wallTarget = null;
                     attacking = false;
                     stateMachine.ChangeState(BaseStateType.ES_RUN);
@@ -146,6 +155,8 @@ public class TankerEnemy : BaseEnemyObject {
     public override void DestroyObject()
     {
         base.DestroyObject();
+        Debug.Log("count");
+        ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
         PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
     }
 
@@ -153,7 +164,6 @@ public class TankerEnemy : BaseEnemyObject {
     {
         if (other.tag == "Wall")
         {
-            
             stateMachine.ChangeState(BaseStateType.ES_ATTACK);
             this.attacking = true;
             BaseWallObject baseWallObject = other.gameObject.GetComponent<BaseWallObject>();
