@@ -30,7 +30,7 @@ public abstract class BaseMoveObject : BaseObject, IMovement {
     // update this
     public override void UpdateObject()
     {
-        //this.Move();
+        this.Move();
     }
 
     public abstract void Move();
