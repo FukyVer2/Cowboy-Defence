@@ -42,4 +42,12 @@ public class BaseUtilExtentions : MonoSingleton<BaseUtilExtentions> {
         rotate.y = _angle;
         _transform.rotation = Quaternion.Euler(rotate);
     }
+
+    public float RoundToFloat(float value, int number)
+    {
+        int pow = (int)Mathf.Pow(10, number);
+        int newValue = Mathf.RoundToInt(value * pow);
+        return (float)newValue / pow;
+        
+    }
 }

@@ -88,6 +88,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
     {
         base.UpdateObject();
         this.Move();
+        DestroyObject();
         KillEnemies();
     }
 
@@ -115,8 +116,11 @@ public abstract class BaseBulletObject : BaseMoveObject {
         else if (other.tag == "Enemy")
         {
             BaseEnemyObject baseEnemy = other.gameObject.GetComponent<BaseEnemyObject>();
-            baseEnemy.ReceiveDamge(damge);
-            PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
+            if (baseEnemy.healthPoint > 0)
+            {
+                baseEnemy.ReceiveDamge(damge);
+                PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
+            }
         }
     }
 }

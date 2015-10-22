@@ -5,6 +5,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
 {
     public float damge; // Thong so chi luong damge cua moi con Enemy
     public float healthPoint; //Thong so chi luong mau cua enemy
+    public float healthBegin; //Thong so mau ban dau
     public BaseStateType stateCurrent; //Trang thai hien tai cua Enemy
     public StateMachine stateMachine; //Day la may chuyen trang thai cua thang enemy
     public Animator baseEnemyAnimator; //Quan ly trang thai cua enemy
@@ -21,6 +22,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
         stateMachine.AddStateAction(BaseStateType.ES_RUN, new EnemyRunState(this));
         stateMachine.AddStateAction(BaseStateType.ES_ATTACK, new EnemyAttackState(this));
         stateMachine.AddStateAction(BaseStateType.ES_DIE, new EnemyDieState(this));
+        
     }
 
     public override void InitObject()
@@ -30,6 +32,17 @@ public abstract class BaseEnemyObject : BaseMoveObject
         positionBegin = transform.position;
         InitStateMachine();
         stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        healthPoint = healthBegin;
+    }
+
+    public override void ResetValueOfAvariable()
+    {
+        base.ResetValueOfAvariable();
+        positionBegin = transform.position;
+        if(stateMachine != null)
+            stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        healthPoint = healthBegin;
+        attacking = false;
     }
 
     public override void UpdateObject()

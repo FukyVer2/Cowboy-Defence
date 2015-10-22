@@ -50,6 +50,7 @@ public class ControlGun : BaseGunObject, IAnimatedSprite
                 GunRotate(_mousePosition);
                 gunAnimator.SetBool("isShoot", true);
                 //
+                AudioManager.Instance.PlayOneShot(BaseAudioType.BA_GUN_SHOOT_AUDIO);
                 this.SpawnOfBullet();
             }
         }

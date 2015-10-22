@@ -29,12 +29,26 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
                     if (baseEnemy.healthPoint <= 0)
                     {
                         rangeOfGun.enemyInBoxs.Remove(baseEnemy);
+                        baseEnemy = null;
                     }
                     else
                         break;
                 }
+
                 if(baseEnemy != null)
                     GunShoot(baseEnemy.transform.position);
+                else if (rangeOfGun.enemyInBoxs.Count == 0)
+                {
+                    transform.localRotation = Quaternion.identity;
+                    //Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.5f);
+                }
+            }
+            else
+            {
+                if (transform.localRotation != Quaternion.identity)
+                {
+                    transform.localRotation  = Quaternion.Slerp(transform.localRotation, Quaternion.identity, Time.deltaTime);
+                }
             }
         }
         
@@ -73,6 +87,7 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
                 //gunAnimator.speed = animationSpeed;
                 gunAnimator.SetBool("isShoot", true);
                 //
+                AudioManager.Instance.PlayOneShot(BaseAudioType.BA_GUN_SHOOT_AUDIO);
                 GunRotate(enemyPosition);
                 this.SpawnOfBullet();
             }

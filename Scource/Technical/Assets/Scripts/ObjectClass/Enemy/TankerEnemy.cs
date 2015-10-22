@@ -101,7 +101,8 @@ public class TankerEnemy : BaseEnemyObject {
 
     public override void Die()
     {
-        DestroyObject();
+        
+        Invoke("DestroyObject", 0.5f);
     }
 
     public override void Run()
@@ -145,7 +146,7 @@ public class TankerEnemy : BaseEnemyObject {
     public override void DestroyObject()
     {
         base.DestroyObject();
-        Destroy(gameObject);
+        PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
     }
 
     public void OnTriggerEnter2D(Collider2D other)
