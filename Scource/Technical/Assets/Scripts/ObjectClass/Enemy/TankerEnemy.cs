@@ -56,6 +56,7 @@ public class TankerEnemy : BaseEnemyObject {
     public override void ReceiveDamge(float damge)
     {
         this.healthPoint -= damge;
+        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
     }
 
     public void AllowAttack()

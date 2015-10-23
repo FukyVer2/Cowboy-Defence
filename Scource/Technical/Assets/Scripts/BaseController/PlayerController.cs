@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour {
         gunController.ShootSpawn(_mousePosition);
     }
 
+    public bool IsAutoGun()
+    {
+        return gunController.IsAutoGun();
+    }
+
     public void GunStop()
     {
         gunController.GunStop();

@@ -8,7 +8,7 @@ public class GunController : MonoBehaviour
     public List<GunConfig> listGunConfig;
     public GameObject gunCurrent;
     public Vector3 targetPosition;
-    public bool isAutoGun; // sung nay nhap tay giu nguyen thi ban
+    public bool isAutoShoot; // sung nay nhap tay giu nguyen thi ban
     private ControlGun gun;
     private Dictionary<BaseGunType, GameObject> dicGunResources; // loại đạn theo súng
 
@@ -33,17 +33,17 @@ public class GunController : MonoBehaviour
         {
             if (gunCurrent != null)
             {
-                gunCurrent.SetActive(false);
+                gunCurrent.GetComponent<SpriteRenderer>().enabled = false;
             }
             gunCurrent = gunObject;
-            gunCurrent.SetActive(true);
+            gunCurrent.GetComponent<SpriteRenderer>().enabled = true;
             gun = this.gunCurrent.GetComponent<ControlGun>();
         }
     }
 
     void Update()
     {
-        if (gun != null && gun.auto && isAutoGun)
+        if (gun != null && gun.auto && isAutoShoot)
         {
             this.gun.GunShoot(targetPosition);
         }
@@ -51,7 +51,7 @@ public class GunController : MonoBehaviour
 
     public void GunStop()
     {
-        isAutoGun = false;
+        isAutoShoot = false;
     }
 
     public void ShootSpawn(Vector3 _mousePosition)
@@ -60,15 +60,23 @@ public class GunController : MonoBehaviour
         {
             if (!gun.auto)
             {
-                Debug.Log("ban-ban-ban");
                 this.gun.GunShoot(_mousePosition);
             }
             else
             {
-                isAutoGun = true;
+                isAutoShoot = true;
                 targetPosition = _mousePosition;
             }
         }
+    }
+
+    public bool IsAutoGun()
+    {
+        if (gun != null)
+        {
+            return gun.auto;
+        }
+        return false;
     }
 
     private GameObject GetGunOfGunType(BaseGunType _gunType)

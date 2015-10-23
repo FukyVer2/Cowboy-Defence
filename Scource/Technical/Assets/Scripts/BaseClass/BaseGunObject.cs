@@ -38,7 +38,7 @@ public class BaseGunObject : BaseObject {
     }
 
     //Ham thay dan
-    public void ReloadBullet()
+    public virtual void ReloadBullet()
     {
         reloading = false;
         if (quantumOfCartridgeBox > 0)

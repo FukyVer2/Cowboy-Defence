@@ -16,7 +16,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public float timeAttack; //thoi gian danh
     public float timeWaitAttack; //thoi gian cho chuyen sang trang thai danh
     public BaseWallObject wallTarget; //Wall dang danh
-
+    //
+    public UIHealth hpView; //Hien thi thanh mau
     public virtual void InitStateMachine()
     {
         stateMachine = new StateMachine();
@@ -35,6 +36,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
         InitStateMachine();
         stateMachine.ChangeState(BaseStateType.ES_IDLE);
         healthPoint = healthBegin;
+        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
         isAlive = true;
         isAttack = false;
         isIdle = false;
@@ -47,6 +49,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
         if(stateMachine != null)
             stateMachine.ChangeState(BaseStateType.ES_IDLE);
         healthPoint = healthBegin;
+        this.hpView.UpdateHealthPoint(BaseUtilExtentions.Instance.RoundToFloat(healthPoint / healthBegin, 2));
         attacking = false;
         isAlive = true;
         isAttack = false;
