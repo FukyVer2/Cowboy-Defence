@@ -3,13 +3,29 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public BaseGunType gunType;
+    public GunController gunController;
+
+    void Start()
+    {
+        gunType = BaseGunType.BG_SHORT;
+        ChangeGun(gunType);
+    }
+    public void ChangeGun(BaseGunType _gunType)
+    {
+        gunType = _gunType;
+        gunController.SetGun(_gunType);
+    }
+
+    public void GunShoot(Vector3 _mousePosition)
+    {
+        gunController.ShootSpawn(_mousePosition);
+    }
+
+    public void GunStop()
+    {
+        gunController.GunStop();
+    }
+
+
 }

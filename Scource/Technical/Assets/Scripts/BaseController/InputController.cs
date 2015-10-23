@@ -17,7 +17,7 @@ public class InputController : MonoSingleton<InputController>, IPointerDownHandl
 #endif
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(eventData.position);
         Vector3 newPosition = new Vector3(mousePosition.x, mousePosition.y, 0.0f);
-        GameController.Instance.playerGun.GunShoot(newPosition);
+        GameController.Instance.player.GunShoot(newPosition);
     }
 
     void Update()
@@ -25,11 +25,14 @@ public class InputController : MonoSingleton<InputController>, IPointerDownHandl
         if (oldEventData != null && oldEventData.IsPointerMoving())
         {
             isPress = false;
+            oldEventData = null;
+            GameController.Instance.player.GunStop();
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isPress = false;
+        GameController.Instance.player.GunStop();
     }
 }

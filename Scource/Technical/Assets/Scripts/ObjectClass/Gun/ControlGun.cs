@@ -8,7 +8,7 @@ public class ControlGun : BaseGunObject, IAnimatedSprite
     //public int frameSpawnShoot; //Frame spawn ra dan
     //private float animationSpeedBegin; //Toc do speed ban dau
     //private float animationSpeed; //Toc do speed o trang thai ban
-
+    public bool auto;
 
     public override void InitObject()
     {
