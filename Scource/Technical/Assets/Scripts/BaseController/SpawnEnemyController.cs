@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
 
     //private float timeWaitSpawnEnemy; //Thoi gian sinh enemy trong mot dot
-    public float timeWaitSpawnEnemyNormal; //Thoi gian spawn enemy giau cacs dot
+    //public float timeWaitSpawnEnemyNormal; //Thoi gian spawn enemy giau cacs dot
     public Transform spawnPositionLeft;
     public Transform spawnPositionRight;
     
@@ -13,7 +13,7 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
     public GameObject enemyPrefab;
     const int ENEMY_GROUP_MAX = 1000;
     public int groupEnemyCurrentIndex; //Dot thu bao nhieu
-    private bool isSpawn; //
+    //private bool isSpawn; //
     //
     public int row; //So hang enemy
     public int col; //So cot enemy
@@ -21,22 +21,26 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
     private Vector3 positionRight;
     private float spaceX; //Khoang cach chieu x
     private float spaceY; //Khoang cach chieu y
+    //
+    public List<BaseEnemyObject> enemyInScreen;
 
 
 
     void Start()
     {
-        isSpawn = true;
+        //isSpawn = true;
+        enemyInScreen = new List<BaseEnemyObject>();
         CalIndexBegin();
         SpawnGroupEnemy();
     }
 
     void Update()
     {   
-        if (groupEnemyCurrentIndex < ENEMY_GROUP_MAX && !isSpawn)
+        if (groupEnemyCurrentIndex < ENEMY_GROUP_MAX && enemyInScreen.Count <= 0)
         {
-            Invoke("SpawnGroupEnemy", timeWaitSpawnEnemyNormal);
-            isSpawn = true;
+            //Invoke("SpawnGroupEnemy", timeWaitSpawnEnemyNormal);
+            SpawnGroupEnemy();
+            //isSpawn = true;
         }
     }
 
@@ -59,11 +63,13 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
         for (int i = 0; i < numberOfEnemy; i++)
         {
             Vector3 newPos = RandomPosition(ref posOfEnemy, row, col);
-            enemy  = PoolCustomize.Instance.GetBaseObject(enemyPrefab, newPos, "Enemy");
+            enemy = ManagerObject.Instance.SpawnEnemy(BaseObjectType.OBE_ENEMY_TANKER, newPos); 
+            //PoolCustomize.Instance.GetBaseObject(enemyPrefab, newPos, "Enemy");
             BaseEnemyObject baseEnemy = enemy.GetComponent<BaseEnemyObject>();
             baseEnemy.ResetValueOfAvariable();
+            enemyInScreen.Add(baseEnemy);
         }
-        isSpawn = false;
+        //isSpawn = false;
         groupEnemyCurrentIndex += 1;
     }
 

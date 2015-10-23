@@ -7,7 +7,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
     public List<ObjectConfig> objectResources;
     private Dictionary<BaseObjectType, GameObject> dicObjectResources;
 
-    void Start()
+    void Awake()
     {
         dicObjectResources = new Dictionary<BaseObjectType, GameObject>();
         InitDictionary();

@@ -60,12 +60,20 @@ public class TankerEnemy : BaseEnemyObject {
 
     public void AllowAttack()
     {
-        stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+        isIdle = false;
+        if (isAlive)
+        {
+            stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+        }
     }
 
     public void AllowIdle()
     {
-        stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        isAttack = false;
+        if (isAlive)
+        {
+            stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        }
     }
 
     public override void Attack()
@@ -76,7 +84,11 @@ public class TankerEnemy : BaseEnemyObject {
         }
         else
         {
-            Invoke("AllowIdle", timeAttack);
+            if (!isAttack)
+            {
+                isAttack = true;
+                Invoke("AllowIdle", timeAttack);
+            }
         }
     }
 
@@ -90,7 +102,11 @@ public class TankerEnemy : BaseEnemyObject {
         {
             if (attacking)
             {
-                Invoke("AllowAttack", timeWaitAttack);
+                if (!isIdle)
+                {
+                    isIdle = true;
+                    Invoke("AllowAttack", timeWaitAttack);
+                }
             }
             else
             {
@@ -155,7 +171,6 @@ public class TankerEnemy : BaseEnemyObject {
     public override void DestroyObject()
     {
         base.DestroyObject();
-        Debug.Log("count");
         ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
         PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
     }
@@ -168,6 +183,17 @@ public class TankerEnemy : BaseEnemyObject {
             this.attacking = true;
             BaseWallObject baseWallObject = other.gameObject.GetComponent<BaseWallObject>();
             wallTarget = baseWallObject;
+            //baseWallObject.ReceiveDamge(this.damge);
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Wall")
+        {
+            stateMachine.ChangeState(BaseStateType.ES_RUN);
+            this.attacking = false;
+            wallTarget = null;
             //baseWallObject.ReceiveDamge(this.damge);
         }
     }

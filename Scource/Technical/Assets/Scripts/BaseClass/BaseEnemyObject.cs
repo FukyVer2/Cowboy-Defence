@@ -11,6 +11,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public Animator baseEnemyAnimator; //Quan ly trang thai cua enemy
     public bool isAlive;                // kiem tra song or chet
     public bool attacking;  //dang danh
+    protected bool isAttack;
+    protected bool isIdle;
     public float timeAttack; //thoi gian danh
     public float timeWaitAttack; //thoi gian cho chuyen sang trang thai danh
     public BaseWallObject wallTarget; //Wall dang danh
@@ -34,6 +36,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
         stateMachine.ChangeState(BaseStateType.ES_IDLE);
         healthPoint = healthBegin;
         isAlive = true;
+        isAttack = false;
+        isIdle = false;
     }
 
     public override void ResetValueOfAvariable()
@@ -45,6 +49,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
         healthPoint = healthBegin;
         attacking = false;
         isAlive = true;
+        isAttack = false;
+        isIdle = false;
     }
 
     public override void UpdateObject()
@@ -62,7 +68,11 @@ public abstract class BaseEnemyObject : BaseMoveObject
 
     public override void DestroyObject()
     {
-        
+        //Huy doi tuong khoi danh sach spawn
+        if (SpawnEnemyController.Instance.enemyInScreen.Contains(this))
+        {
+            SpawnEnemyController.Instance.enemyInScreen.Remove(this);
+        }
     }
 
     public abstract void ReceiveDamge(float damge);
