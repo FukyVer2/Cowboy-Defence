@@ -22,5 +22,4 @@ public enum BaseObjectType
     // BOSS TANKER
     OB_BOSS_TANKER= 30
     
-
 }
