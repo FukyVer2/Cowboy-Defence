@@ -24,20 +24,20 @@ public abstract class BaseBossObject : BaseMoveObject
     public override void InitObject()
     {
         base.InitObject();
-        //this.gameObjectType = BaseObjectType.OB_BOSS_TANKER;
-        //isAlive = true;
-        //InitStateMachine();
-        //positionBegin = transform.position;
-        //healthPoint = healthBegin;
-        //this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
-        //isAttack = false;
-        //isIdle = false;
+        this.gameObjectType = BaseObjectType.OB_BOSS_TANKER;
+        isAlive = true;
+        InitStateMachine();
+        positionBegin = transform.position;
+        healthPoint = healthBegin;
+        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
+        isAttack = false;
+        isIdle = false;
     }
 
     public virtual void InitStateMachine()
     {
         stateMachine = new StateMachine();
-        stateMachine.AddStateAction(BaseStateType.BS_SUMMON, new BossSummonedState(this));
+        //stateMachine.AddStateAction(BaseStateType.BS_SUMMON, new BossSummonedState(this));
         stateMachine.AddStateAction(BaseStateType.BS_IDLE, new BossIdleState(this));
         stateMachine.AddStateAction(BaseStateType.BS_RUN, new BossRunState(this));
         stateMachine.AddStateAction(BaseStateType.BS_DIE, new BossDieState(this));
@@ -50,7 +50,15 @@ public abstract class BaseBossObject : BaseMoveObject
     public override void UpdateObject()
     {
         stateMachine.MachineStateUpdate();
+        UpdateDie();
         base.UpdateObject();
+    }
+    public void UpdateDie()
+    {
+        if(healthPoint <=0)
+        {
+            stateMachine.ChangeState(BaseStateType.BS_DIE);
+        }
     }
     public override void ResetValueOfAvariable()
     {
@@ -69,7 +77,7 @@ public abstract class BaseBossObject : BaseMoveObject
     public abstract void ReceiveDamge(float damge);
     public override void DestroyObject()
     {
-        //throw new NotImplementedException();
+        
     }
     public virtual void Idle()
     {

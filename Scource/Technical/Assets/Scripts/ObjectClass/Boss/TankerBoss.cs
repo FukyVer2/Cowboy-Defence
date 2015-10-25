@@ -11,19 +11,12 @@ public class TankerBoss : BaseBossObject {
     public float minXRandom;
     public float maxXRandom;
 
+    public SpriteRenderer spriteRender;
+    public BoxCollider2D box;
     public override void InitObject()
     {
         base.InitObject();
-        gameObjectType = BaseObjectType.OB_ENEMY;
-        positionBegin = transform.position;
-        InitStateMachine();
         objParticalAttack.Stop();
-        //stateMachine.ChangeState(BaseStateType.ES_IDLE);
-        healthPoint = healthBegin;
-        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
-        isAlive = true;
-        isAttack = false;
-        isIdle = false;
     }
 
     // Set chuyen boss tu xuat hien sang idle
@@ -83,7 +76,24 @@ public class TankerBoss : BaseBossObject {
     }
     public override void UpdateObject()
     {
+        UpdateAI();
         base.UpdateObject();
+    }
+    public void UpdateAI()
+    {
+        if(countReceiveBullet > 2 && attacking == false)
+        {
+            countReceiveBullet = 0;
+            spriteRender.enabled = false;
+            box.enabled = false;
+            Invoke("AllowInvi",1.5f);
+        }
+    }
+    public void AllowInvi()
+    {
+        positionBegin = new Vector3(Random.Range(minXRandom, maxXRandom), transform.position.y, transform.position.z);
+        spriteRender.enabled = true;
+        box.enabled = true;
     }
     public override void ReceiveDamge(float damge)
     {
@@ -110,41 +120,27 @@ public class TankerBoss : BaseBossObject {
 
     public override void Attack()
     {
-        if (healthPoint <= 0)
+        if (!isAttack)
         {
-            stateMachine.ChangeState(BaseStateType.BS_DIE);
-        }
-        else
-        {
-            if (!isAttack)
-            {
-                isAttack = true;
-                Invoke("AllowIdle", timeAttack);
-            }
+            isAttack = true;
+            Invoke("AllowIdle", timeAttack);
         }
     }
 
     public override void Idle()
     {
-        if (healthPoint <= 0)
+        if (attacking)
         {
-            stateMachine.ChangeState(BaseStateType.BS_IDLE);
+            if (!isIdle)
+            {
+                isIdle = true;
+                Invoke("AllowAttack", timeWaitAttack);
+
+            }
         }
         else
         {
-            if (attacking)
-            {
-                if (!isIdle)
-                {
-                    isIdle = true;
-                    Invoke("AllowAttack", timeWaitAttack);
-                    
-                }
-            }
-            else
-            {
-                stateMachine.ChangeState(BaseStateType.BS_RUN);
-            }
+            stateMachine.ChangeState(BaseStateType.BS_RUN);
         }
     }
 
@@ -206,7 +202,7 @@ public class TankerBoss : BaseBossObject {
     public override void DestroyObject()
     {
 #if UNITY_EDITOR
-        Debug.Log("can't destroyobject!");
+        Debug.Log("can't destroyobject for code!");
 #endif
         base.DestroyObject();
         //ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
@@ -222,14 +218,17 @@ public class TankerBoss : BaseBossObject {
             BaseWallObject baseWallObjectScripts = other.GetComponent<BaseWallObject>();
             this.wallTarget = baseWallObjectScripts;
         }
-      
+        if(other.tag =="Bullet")
+        {
+            countReceiveBullet++;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Wall")
         {
-            stateMachine.ChangeState(BaseStateType.BS_RUN);
+            stateMachine.ChangeState(BaseStateType.BS_IDLE);
             this.attacking = false;
             wallTarget = null;
         }
