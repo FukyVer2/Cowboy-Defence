@@ -17,6 +17,12 @@ public enum BaseStateType
     PS_DIE = 7,
 
     //None state
-    ES_NONE = 8
+    ES_NONE = 8,
+    // Boss state
+    BS_IDLE = 10,
+    BS_ATTACK = 11,
+    BS_SUMMON = 12,
+    BS_DIE = 13,
+    BS_RUN =14
 }
 

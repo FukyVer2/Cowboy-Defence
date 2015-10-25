@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TankerBoss : BaseEnemyObject {
+public class TankerBoss : BaseBossObject {
     // thuộc tính riêng của boss
     public int countReceiveBullet =0; // so vien dan ma no bi trung
 
-    public GameObject objParticalSummoned;
+    public ParticleSystem objParticalSummoned;
     public ParticleSystem objParticalAttack;
 
     public float minXRandom;
@@ -29,8 +29,8 @@ public class TankerBoss : BaseEnemyObject {
     // Set chuyen boss tu xuat hien sang idle
     public void SetFrameFinalSummoned()
     {
-        stateMachine.ChangeState(BaseStateType.ES_IDLE);
-        objParticalSummoned.SetActive(false);
+        stateMachine.ChangeState(BaseStateType.BS_IDLE);
+        objParticalSummoned.Stop();
     }
     // cho damge
     public override void KillPlayer()
@@ -83,7 +83,6 @@ public class TankerBoss : BaseEnemyObject {
     }
     public override void UpdateObject()
     {
-
         base.UpdateObject();
     }
     public override void ReceiveDamge(float damge)
@@ -96,7 +95,7 @@ public class TankerBoss : BaseEnemyObject {
         isIdle = false;
         if (isAlive)
         {
-            stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+            stateMachine.ChangeState(BaseStateType.BS_ATTACK);
         }
     }
 
@@ -105,7 +104,7 @@ public class TankerBoss : BaseEnemyObject {
         isAttack = false;
         if (isAlive)
         {
-            stateMachine.ChangeState(BaseStateType.ES_IDLE);
+            stateMachine.ChangeState(BaseStateType.BS_IDLE);
         }
     }
 
@@ -113,7 +112,7 @@ public class TankerBoss : BaseEnemyObject {
     {
         if (healthPoint <= 0)
         {
-            stateMachine.ChangeState(BaseStateType.ES_DIE);
+            stateMachine.ChangeState(BaseStateType.BS_DIE);
         }
         else
         {
@@ -129,7 +128,7 @@ public class TankerBoss : BaseEnemyObject {
     {
         if (healthPoint <= 0)
         {
-            stateMachine.ChangeState(BaseStateType.ES_DIE);
+            stateMachine.ChangeState(BaseStateType.BS_IDLE);
         }
         else
         {
@@ -144,7 +143,7 @@ public class TankerBoss : BaseEnemyObject {
             }
             else
             {
-                stateMachine.ChangeState(BaseStateType.ES_RUN);
+                stateMachine.ChangeState(BaseStateType.BS_RUN);
             }
         }
     }
@@ -162,13 +161,13 @@ public class TankerBoss : BaseEnemyObject {
     {
         if (healthPoint <= 0)
         {
-            stateMachine.ChangeState(BaseStateType.ES_DIE);
+            stateMachine.ChangeState(BaseStateType.BS_DIE);
         }
         else
         {
             if (attacking)
             {
-                stateMachine.ChangeState(BaseStateType.ES_IDLE);
+                stateMachine.ChangeState(BaseStateType.BS_IDLE);
             }
             else
                 Move();
@@ -192,7 +191,7 @@ public class TankerBoss : BaseEnemyObject {
                     //Destroy(wallTarget.gameObject);
                     wallTarget = null;
                     attacking = false;
-                    stateMachine.ChangeState(BaseStateType.ES_RUN);
+                    stateMachine.ChangeState(BaseStateType.BS_RUN);
                 }
             }
         }
@@ -200,7 +199,7 @@ public class TankerBoss : BaseEnemyObject {
         {
             wallTarget = null;
             attacking = false;
-            stateMachine.ChangeState(BaseStateType.ES_RUN);
+            stateMachine.ChangeState(BaseStateType.BS_RUN);
         }
     }
 
@@ -209,7 +208,7 @@ public class TankerBoss : BaseEnemyObject {
 #if UNITY_EDITOR
         Debug.Log("can't destroyobject!");
 #endif
-        //base.DestroyObject();
+        base.DestroyObject();
         //ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
         //PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
     }
@@ -230,7 +229,7 @@ public class TankerBoss : BaseEnemyObject {
     {
         if (other.tag == "Wall")
         {
-            stateMachine.ChangeState(BaseStateType.ES_RUN);
+            stateMachine.ChangeState(BaseStateType.BS_RUN);
             this.attacking = false;
             wallTarget = null;
         }
