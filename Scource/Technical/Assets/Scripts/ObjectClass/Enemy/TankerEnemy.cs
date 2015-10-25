@@ -180,7 +180,7 @@ public class TankerEnemy : BaseEnemyObject {
     {
         if (other.tag == "Wall")
         {
-            stateMachine.ChangeState(BaseStateType.ES_ATTACK);
+            //stateMachine.ChangeState(BaseStateType.ES_ATTACK);
             this.attacking = true;
             BaseWallObject baseWallObject = other.gameObject.GetComponent<BaseWallObject>();
             wallTarget = baseWallObject;

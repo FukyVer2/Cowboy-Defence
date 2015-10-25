@@ -6,7 +6,7 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public float damge; // Thong so chi luong damge cua moi con Enemy
     public float healthPoint; //Thong so chi luong mau cua enemy
     public float healthBegin; //Thong so mau ban dau
-    public BaseStateType stateCurrent; //Trang thai hien tai cua Enemy
+    //public BaseStateType stateCurrent; //Trang thai hien tai cua Enemy
     public StateMachine stateMachine; //Day la may chuyen trang thai cua thang enemy
     public Animator baseEnemyAnimator; //Quan ly trang thai cua enemy
     public bool isAlive;                // kiem tra song or chet
