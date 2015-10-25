@@ -4,13 +4,33 @@ using System.Collections;
 public class TankerBoss : BaseEnemyObject {
     // thuộc tính riêng của boss
     public int countReceiveBullet =0; // so vien dan ma no bi trung
+
+    public GameObject objParticalSummoned;
+    public ParticleSystem objParticalAttack;
+
     public float minXRandom;
     public float maxXRandom;
 
     public override void InitObject()
     {
-        //Debug.Log("init!");
         base.InitObject();
+        gameObjectType = BaseObjectType.OB_ENEMY;
+        positionBegin = transform.position;
+        InitStateMachine();
+        objParticalAttack.Stop();
+        //stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        healthPoint = healthBegin;
+        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
+        isAlive = true;
+        isAttack = false;
+        isIdle = false;
+    }
+
+    // Set chuyen boss tu xuat hien sang idle
+    public void SetFrameFinalSummoned()
+    {
+        stateMachine.ChangeState(BaseStateType.ES_IDLE);
+        objParticalSummoned.SetActive(false);
     }
     // cho damge
     public override void KillPlayer()
@@ -163,7 +183,9 @@ public class TankerBoss : BaseEnemyObject {
             if (wallTarget.healthPoint > 0)
             {
                 wallTarget.ReceiveDamge(this.damge);
-
+                // instanitial partical bum
+                objParticalAttack.transform.position = wallTarget.transform.position;
+                objParticalAttack.Play();
                 if (wallTarget.healthPoint <= 0)
                 {
                     wallTarget.DestroyObject();

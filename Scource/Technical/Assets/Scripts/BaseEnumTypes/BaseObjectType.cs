@@ -18,7 +18,9 @@ public enum BaseObjectType
     OBP_ENEMY_DIE = 12,
     OBP_WALL_FALL = 13,
     //UI
-    OU_COIN = 20
+    OU_COIN = 20,
+    // BOSS TANKER
+    OB_BOSS_TANKER= 30
     
 
 }

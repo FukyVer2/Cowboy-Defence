@@ -186,3 +186,15 @@ class EnemyDieState : IState
     }
 }
 
+//class EnemySummonedState : IState
+//{
+//    BaseEnemyObject enemyObject;
+//    public EnemySummonedState(BaseEnemyObject _enemyObject)
+//    {
+//        enemyObject = _enemyObject;
+//    }
+//    public void beginState()
+//    {
+//        enemyObject.baseEnemyAnimator.SetTrigger("IsSummoned");
+//    }
+//}
