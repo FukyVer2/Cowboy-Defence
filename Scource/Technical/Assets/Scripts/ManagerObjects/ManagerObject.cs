@@ -59,6 +59,44 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
             return null;
         }
     }
+
+    public GameObject SpawnItem(BaseObjectType _objectType, Vector3 _position)
+    {
+        GameObject prefab = GetPrefabsByObjectType(_objectType);
+        if (prefab != null)
+        {
+            return PoolCustomize.Instance.GetBaseObject(prefab, _position, "Item");
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogError("Thang cha nay no chua co!");
+#endif
+            return null;
+        }
+    }
+
+
+    public GameObject SpawnObject(BaseObjectType _objectType, Vector3 _position, string _poolName)
+    {
+        GameObject prefab = GetPrefabsByObjectType(_objectType);
+        if (prefab != null)
+        {
+            return PoolCustomize.Instance.GetBaseObject(prefab, _position, _poolName);
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogError("Thang cha nay no chua co!");
+#endif
+            return null;
+        }
+    }
+
+    public void HideObject(GameObject gameObject, string _poolName)
+    {
+        PoolCustomize.Instance.HideBaseObject(gameObject, _poolName);
+    }
 }
 
 [System.Serializable]

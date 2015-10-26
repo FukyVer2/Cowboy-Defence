@@ -17,6 +17,8 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public float timeWaitAttack; //thoi gian cho chuyen sang trang thai danh
     public BaseWallObject wallTarget; //Wall dang danh
     //
+    public float coin; //Khi con nay bi danh se roi ra bao nhieu tien
+    //
     public UIHealth hpView; //Hien thi thanh mau
     public virtual void InitStateMachine()
     {
@@ -75,6 +77,25 @@ public abstract class BaseEnemyObject : BaseMoveObject
         if (SpawnEnemyController.Instance.enemyInScreen.Contains(this))
         {
             SpawnEnemyController.Instance.enemyInScreen.Remove(this);
+        }
+        GiveCoin();
+    }
+
+    public void GiveCoin()
+    {
+        Coin coinObj;
+        GameObject coinObject;
+        Vector3 coinPosition = transform.position;
+        for (int i = 0; i < coin / Coin.COIN_POINT; i++)
+        {
+            coinPosition.x = Random.Range(-coinPosition.x - 1, coinPosition.x + 1);
+            coinObject = ManagerObject.Instance.SpawnItem(BaseObjectType.OU_COIN, transform.position);
+            if (coinObject != null)
+            {
+                coinObj = coinObject.GetComponent<Coin>();
+                coinObj.PositionMoveTo = new Vector3(0, 8.0f, 0);
+                coinObj.ResetValueOfAvariable();
+            }
         }
     }
 
