@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManagerScreen : MonoBehaviour {
+public class GameOverScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

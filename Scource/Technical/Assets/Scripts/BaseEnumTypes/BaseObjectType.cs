@@ -21,5 +21,4 @@ public enum BaseObjectType
     OU_COIN = 20,
     // BOSS TANKER
     OB_BOSS_TANKER= 30
-    
 }
