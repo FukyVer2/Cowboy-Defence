@@ -11,7 +11,7 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
     
     //Alpha test
     public GameObject enemyPrefab;
-    const int ENEMY_GROUP_MAX = 1000;
+    const int ENEMY_GROUP_MAX = 1;
     public int groupEnemyCurrentIndex; //Dot thu bao nhieu
     //private bool isSpawn; //
     //
@@ -24,7 +24,8 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
     //
     public List<BaseEnemyObject> enemyInScreen;
 
-
+    public Transform tranformBossAppear;// vi tri xuat hien boss
+    public bool isCreateBoss = true;
 
     void Start()
     {
@@ -41,6 +42,11 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
             //Invoke("SpawnGroupEnemy", timeWaitSpawnEnemyNormal);
             SpawnGroupEnemy();
             //isSpawn = true;
+        }else if(isCreateBoss && enemyInScreen.Count <=0)
+        {
+            GameObject obj_Boss = ManagerObject.Instance.SpawnEnemy(BaseObjectType.OB_BOSS_TANKER, tranformBossAppear.position);
+            SpawnGroupEnemy();
+            isCreateBoss = false;
         }
     }
 

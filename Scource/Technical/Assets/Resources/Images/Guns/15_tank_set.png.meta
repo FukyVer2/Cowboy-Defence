@@ -65,7 +65,7 @@ TextureImporter:
         width: 35
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_1
       rect:
@@ -75,7 +75,7 @@ TextureImporter:
         width: 38
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_2
       rect:
@@ -85,7 +85,7 @@ TextureImporter:
         width: 37
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_3
       rect:
@@ -95,7 +95,7 @@ TextureImporter:
         width: 45
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_4
       rect:
@@ -105,7 +105,7 @@ TextureImporter:
         width: 35
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_5
       rect:
@@ -115,7 +115,7 @@ TextureImporter:
         width: 47
         height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_6
       rect:
@@ -125,7 +125,7 @@ TextureImporter:
         width: 47
         height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_7
       rect:
@@ -135,7 +135,7 @@ TextureImporter:
         width: 48
         height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_8
       rect:
@@ -143,9 +143,9 @@ TextureImporter:
         x: 206
         y: 70
         width: 64
-        height: 65
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_9
       rect:
@@ -153,9 +153,9 @@ TextureImporter:
         x: 274
         y: 70
         width: 64
-        height: 65
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_10
       rect:
@@ -165,7 +165,7 @@ TextureImporter:
         width: 64
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_11
       rect:
@@ -175,17 +175,17 @@ TextureImporter:
         width: 64
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_12
       rect:
         serializedVersion: 2
-        x: 136
+        x: 204
         y: 1
-        width: 135
-        height: 66
+        width: 67
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 15_tank_set_13
       rect:
@@ -195,7 +195,7 @@ TextureImporter:
         width: 62
         height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

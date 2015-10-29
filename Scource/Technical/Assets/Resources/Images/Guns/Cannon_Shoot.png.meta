@@ -47,7 +47,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Cannon_Shoot_0
+    - name: 
       rect:
         serializedVersion: 2
         x: 362
@@ -55,19 +55,19 @@ TextureImporter:
         width: 114
         height: 194
       alignment: 9
-      pivot: {x: .492402196, y: .254449755}
+      pivot: {x: .5, y: .375}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Cannon_Shoot_4
+    - name: 
       rect:
         serializedVersion: 2
         x: 67
         y: 40
         width: 114
         height: 145
-      alignment: 9
-      pivot: {x: .5, y: .338721961}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Cannon_Shoot_5
+    - name: 
       rect:
         serializedVersion: 2
         x: 215
@@ -75,9 +75,9 @@ TextureImporter:
         width: 114
         height: 136
       alignment: 9
-      pivot: {x: .492402464, y: .353523433}
+      pivot: {x: .5, y: .529999971}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Cannon_Shoot_6
+    - name: 
       rect:
         serializedVersion: 2
         x: 501
@@ -85,7 +85,7 @@ TextureImporter:
         width: 130
         height: 222
       alignment: 9
-      pivot: {x: .506662667, y: .226898298}
+      pivot: {x: .5, y: .319999993}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
