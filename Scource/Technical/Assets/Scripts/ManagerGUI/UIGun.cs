@@ -41,15 +41,13 @@ public class UIGun : MonoBehaviour {
         if (reloading)
         {
             timeCurrent += Time.deltaTime;
+            hideImage.fillAmount = 1 - (timeCurrent / timeReloadBullet);
             if (timeCurrent >= timeReloadBullet)
             {
                 canvasGroup.blocksRaycasts = true;
+                hideImage.fillAmount = 0;
                 timeCurrent = 0.0f;
                 reloading = false;
-            }
-            else
-            {
-                hideImage.fillAmount = BaseUtilExtentions.Instance.RoundToFloat(1 - (timeCurrent / timeReloadBullet), 1);
             }
         }
     }

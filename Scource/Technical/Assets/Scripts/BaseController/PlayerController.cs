@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public BaseGunType gunType;
+    public float score;
+    //public Transform scorePosition;
     public GunController gunController;
 
     void Start()

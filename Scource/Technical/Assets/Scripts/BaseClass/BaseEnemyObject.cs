@@ -85,18 +85,20 @@ public abstract class BaseEnemyObject : BaseMoveObject
     {
         Coin coinObj;
         GameObject coinObject;
-        Vector3 coinPosition = transform.position;
         for (int i = 0; i < coin / Coin.COIN_POINT; i++)
         {
-            coinPosition.x = Random.Range(-coinPosition.x - 1, coinPosition.x + 1);
             coinObject = ManagerObject.Instance.SpawnItem(BaseObjectType.OU_COIN, transform.position);
             if (coinObject != null)
             {
                 coinObj = coinObject.GetComponent<Coin>();
-                coinObj.PositionMoveTo = new Vector3(0, 8.0f, 0);
+                coinObj.PositionMoveTo = GameController.Instance.scoreView.transform.position;
                 coinObj.ResetValueOfAvariable();
+                coinObj.vx = Random.Range(-coinObj.velocityNormalX, coinObj.velocityNormalX);
+                //coinObj.velocityNormalY = Random.Range(coinObj.velocityNormalY, coinObj.velocityNormalY + 1);
             }
         }
+
+        GameController.Instance.UpdatePlayerScore(coin);
     }
 
     public abstract void ReceiveDamge(float damge);

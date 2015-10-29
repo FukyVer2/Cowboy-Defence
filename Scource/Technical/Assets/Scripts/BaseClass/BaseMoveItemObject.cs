@@ -25,6 +25,11 @@ public abstract class BaseMoveItemObject : BaseMoveObject
         positionBegin = transform.position;
     }
 
+    public override void UpdateObject()
+    {
+        Move();
+    }
+
     public override void Move()
     {
         

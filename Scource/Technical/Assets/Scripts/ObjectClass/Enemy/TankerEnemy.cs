@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TankerEnemy : BaseEnemyObject {
 
+    public Transform hitPosition;
 
     public override void KillPlayer()
     {
@@ -55,8 +56,13 @@ public class TankerEnemy : BaseEnemyObject {
 
     public override void ReceiveDamge(float damge)
     {
-        this.healthPoint -= damge;
+        this.healthPoint -=  damge;
         this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
+        //
+        GameObject numberObj = ManagerObject.Instance.SpawnObject(BaseObjectType.OU_NUMBER, hitPosition.position, "Item");
+        Number number = numberObj.GetComponent<Number>();
+        number.Reset();
+        number.SetValue(damge.ToString());
     }
 
     public void AllowAttack()

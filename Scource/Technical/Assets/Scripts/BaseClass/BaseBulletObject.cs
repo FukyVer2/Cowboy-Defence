@@ -117,7 +117,7 @@ public abstract class BaseBulletObject : BaseMoveObject {
         {
             // spawn partical 
             ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_EXPLOSION_C_E_B, transform.position);
-
+            
             BaseEnemyObject baseEnemy = other.gameObject.GetComponent<BaseEnemyObject>();
             if (baseEnemy.healthPoint > 0)
             {
