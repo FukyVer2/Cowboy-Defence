@@ -124,6 +124,11 @@ public abstract class BaseBulletObject : BaseMoveObject {
                 baseEnemy.ReceiveDamge(damge);
                 PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
             }
+
+            if (bulletType == BaseBulletType.BL_SLOW)
+            {
+                baseEnemy.effectRenderer.AddStatModifier(BaseStatModifierType.BSM_SLOW, 2.5f, 0.2f);
+            }
         }
     }
 }

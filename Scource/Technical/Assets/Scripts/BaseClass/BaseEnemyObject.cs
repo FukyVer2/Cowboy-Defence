@@ -18,8 +18,10 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public BaseWallObject wallTarget; //Wall dang danh
     //
     public float coin; //Khi con nay bi danh se roi ra bao nhieu tien
+    public EffectRenderer effectRenderer; //Quan ly viec sinh ra effect
     //
     public UIHealth hpView; //Hien thi thanh mau
+
     public virtual void InitStateMachine()
     {
         stateMachine = new StateMachine();
@@ -183,7 +185,6 @@ class EnemyRunState : IState
         enemyObject.baseEnemyAnimator.SetBool("IsRun", false);
     }
 }
-
 
 class EnemyDieState : IState
 {
