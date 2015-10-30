@@ -13,6 +13,8 @@ public class TankerBoss : BaseBossObject {
 
     public SpriteRenderer spriteRender;
     public BoxCollider2D box;
+
+    public Transform hitPosition;
     public override void InitObject()
     {
         base.InitObject();
@@ -98,6 +100,12 @@ public class TankerBoss : BaseBossObject {
     public override void ReceiveDamge(float damge)
     {
         this.healthPoint -= damge;
+        this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
+        //
+        GameObject numberObj = ManagerObject.Instance.SpawnObject(BaseObjectType.OU_NUMBER, hitPosition.position, "Item");
+        Number number = numberObj.GetComponent<Number>();
+        number.Reset();
+        number.SetValue(damge.ToString());
     }
 
     public void AllowAttack()
@@ -149,7 +157,7 @@ public class TankerBoss : BaseBossObject {
         if (isAlive)
         {
             isAlive = false;
-            Invoke("DestroyObject", 0.2f);
+            Invoke("DestroyObject", 0.5f);
         }
     }
 
@@ -205,8 +213,8 @@ public class TankerBoss : BaseBossObject {
         Debug.Log("can't destroyobject for code!");
 #endif
         base.DestroyObject();
-        //ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
-        //PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
+        ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_ENEMY_DIE, transform.position);
+        PoolCustomize.Instance.HideBaseObject(gameObject, "Enemy");
     }
 
     public void OnTriggerEnter2D(Collider2D other)

@@ -130,5 +130,18 @@ public abstract class BaseBulletObject : BaseMoveObject {
                 baseEnemy.effectRenderer.AddStatModifier(BaseStatModifierType.BSM_SLOW, 2.5f, 0.2f);
             }
         }
+        else if(other.tag =="Boss")
+        {
+            // instance partical
+            ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_EXPLOSION_C_E_B, transform.position);
+            //tru mau
+            BaseBossObject baseBoss = other.gameObject.GetComponent<BaseBossObject>();
+            if(baseBoss.healthPoint >0)
+            {
+                baseBoss.ReceiveDamge(this.damge);
+                PoolCustomize.Instance.HideBaseObject(gameObject,"Bullet");
+            }
+
+        }
     }
 }
