@@ -15,6 +15,7 @@ public class TankerBoss : BaseBossObject {
     public BoxCollider2D box;
 
     public Transform hitPosition;
+    public GameObject obj_HP;
     public override void InitObject()
     {
         base.InitObject();
@@ -83,11 +84,12 @@ public class TankerBoss : BaseBossObject {
     }
     public void UpdateAI()
     {
-        if(countReceiveBullet > 2 && attacking == false)
+        if(countReceiveBullet > 20 && attacking == false)
         {
             countReceiveBullet = 0;
             spriteRender.enabled = false;
             box.enabled = false;
+            obj_HP.SetActive(false);
             Invoke("AllowInvi",1.5f);
         }
     }
@@ -95,6 +97,7 @@ public class TankerBoss : BaseBossObject {
     {
         positionBegin = new Vector3(Random.Range(minXRandom, maxXRandom), transform.position.y, transform.position.z);
         spriteRender.enabled = true;
+        obj_HP.SetActive(true);
         box.enabled = true;
     }
     public override void ReceiveDamge(float damge)
@@ -157,7 +160,7 @@ public class TankerBoss : BaseBossObject {
         if (isAlive)
         {
             isAlive = false;
-            Invoke("DestroyObject", 0.5f);
+            Invoke("DestroyObject", 1f);
         }
     }
 

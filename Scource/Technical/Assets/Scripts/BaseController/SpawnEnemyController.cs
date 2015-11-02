@@ -11,7 +11,7 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
     
     //Alpha test
     public GameObject enemyPrefab;
-    const int ENEMY_GROUP_MAX = 1;
+    const int ENEMY_GROUP_MAX = 5;
     public int groupEnemyCurrentIndex; //Dot thu bao nhieu
     //private bool isSpawn; //
     //

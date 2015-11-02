@@ -18,16 +18,17 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 			yield return new WaitForSeconds(0.5f);
 			if(!particleSystem.IsAlive(true))
 			{
-				if(OnlyDeactivate)
-				{
-					#if UNITY_3_5
+                if (OnlyDeactivate)
+                {
+#if UNITY_3_5
 						this.gameObject.SetActiveRecursively(false);
-					#else
-						this.gameObject.SetActive(false);
-					#endif
-				}
-				else
-					GameObject.Destroy(this.gameObject);
+#else
+                    this.gameObject.SetActive(false);
+#endif
+                }
+                else
+                    //GameObject.Destroy(this.gameObject);
+                    PoolCustomize.Instance.HideBaseObject(gameObject, "Partical");
 				break;
 			}
 		}

@@ -17,6 +17,7 @@ public enum BaseObjectType
     OBP_EXPLOSION_GUN_SUPPORT = 11,
     OBP_ENEMY_DIE = 12,
     OBP_WALL_FALL = 13,
+    OBP_GROUND_WOOD_HIT =14,
     //UI
     OU_COIN = 20,
     OU_NUMBER = 21,
