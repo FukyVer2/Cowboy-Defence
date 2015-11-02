@@ -7,6 +7,7 @@ public class SlowBullet : BaseBulletObject
     public override void InitObject()
     {
         base.InitObject();
+        bulletType = BaseBulletType.BL_SLOW;
         //direction = BaseDirectionType.UP;
         ResetValueOfAvariable();
     }
