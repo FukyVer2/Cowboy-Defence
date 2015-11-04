@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 9ec85cb9c747e164c8d3d2881273fd01
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "t\u1EA3i xu\u1ED1ng (5)_0"
+    21300002: "t\u1EA3i xu\u1ED1ng (5)_1"
+    21300004: "t\u1EA3i xu\u1ED1ng (5)_2"
+    21300006: "t\u1EA3i xu\u1ED1ng (5)_3"
+    21300008: "t\u1EA3i xu\u1ED1ng (5)_4"
+    21300010: "t\u1EA3i xu\u1ED1ng (5)_5"
+    21300012: "t\u1EA3i xu\u1ED1ng (5)_6"
+    21300014: "t\u1EA3i xu\u1ED1ng (5)_7"
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: "t\u1EA3i xu\u1ED1ng (5)_0"
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_1"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 53
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_2"
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 57
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_3"
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 60
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_4"
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 0
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_5"
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 0
+        width: 56
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_6"
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 0
+        width: 59
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "t\u1EA3i xu\u1ED1ng (5)_7"
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 0
+        width: 62
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
