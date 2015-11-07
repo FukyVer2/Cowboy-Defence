@@ -32,11 +32,15 @@ public abstract class BaseEnemyObject : BaseMoveObject
 
     public virtual void ResetColor()
     {
-        this.SetColor(new Color(255, 255, 255));
+        if (!effectRenderer.Contains(BaseStatModifierType.BSM_SLOW))
+        {
+            this.SetColor(new Color(255, 255, 255));
+        }
     }
 
     public virtual void ResetColor(float _time)
     {
+
         Invoke("ResetColor", _time);
     }
 

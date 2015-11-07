@@ -8,6 +8,30 @@ public abstract class BaseBulletObject : BaseMoveObject {
     protected BaseObjectType objectUseType; //Thong so chi loai dan nay do thang nao su dung
     protected float angleShoot; //Goc ban cua vien dan
 
+    protected bool isStun; //Dan nay co stun
+    protected bool isCritDamge; // Dan nay co crit damge hay ko
+    protected float critDamge; //Damge tang them bao nhieu %
+
+    public bool IsStun
+    {
+        get { return isStun; }
+        set { isStun = value; }
+    }
+
+
+    public bool IsCritDamge
+    {
+        get { return isCritDamge; }
+        set { isCritDamge = value; }
+    }
+
+
+    public float CritDamge
+    {
+        get { return critDamge; }
+        set { critDamge = value; }
+    }
+
     public float AngelShoot
     {
         get { return angleShoot; }
@@ -121,19 +145,29 @@ public abstract class BaseBulletObject : BaseMoveObject {
             BaseEnemyObject baseEnemy = other.gameObject.GetComponent<BaseEnemyObject>();
             if (baseEnemy.healthPoint > 0)
             {
-                baseEnemy.ReceiveDamge(damge);
+                if (IsCritDamge)
+                {
+                    baseEnemy.ReceiveDamge(damge + (int)(damge * CritDamge));
+                }
+                else
+                {
+                    baseEnemy.ReceiveDamge(damge);
+                }
                 PoolCustomize.Instance.HideBaseObject(gameObject, "Bullet");
             }
 
-            if (bulletType == BaseBulletType.BL_SLOW)
+            if (bulletType == BaseBulletType.BL_SLOW || IsStun)
             {
                 baseEnemy.effectRenderer.AddStatModifier(BaseStatModifierType.BSM_SLOW, 2.5f, 0.2f);
                 baseEnemy.SetColor(new Color(0, 0.5f, 0));
             }
             else
             {
-                baseEnemy.SetColor(new Color(0.8f, 0.2f, 0.2f, 1f));
-                baseEnemy.ResetColor(0.5f);
+                if (!baseEnemy.effectRenderer.Contains(BaseStatModifierType.BSM_SLOW))
+                {
+                    baseEnemy.SetColor(new Color(0.8f, 0.2f, 0.2f, 1f));
+                    baseEnemy.ResetColor(0.5f);
+                }
             }
         }
         else if(other.tag =="Boss")

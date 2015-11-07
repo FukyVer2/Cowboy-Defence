@@ -20,38 +20,88 @@ public class AutoGun : BaseGunObject, IAnimatedSprite {
         base.UpdateObject();
         if (rangeOfGun != null)
         {
-            if (rangeOfGun.enemyInBoxs.Count != 0)
-            {
-                BaseEnemyObject baseEnemy = null;
-                for (int i = 0; i < rangeOfGun.enemyInBoxs.Count; ++i )
-                {
-                    baseEnemy = rangeOfGun.enemyInBoxs[i];
-                    if (baseEnemy.healthPoint <= 0)
-                    {
-                        rangeOfGun.enemyInBoxs.Remove(baseEnemy);
-                        baseEnemy = null;
-                    }
-                    else
-                        break;
-                }
+            //if (rangeOfGun.enemyInBoxs.Count != 0)
+            //{
+            //    BaseEnemyObject baseEnemy = null;
+            //    for (int i = 0; i < rangeOfGun.enemyInBoxs.Count; ++i )
+            //    {
+            //        baseEnemy = rangeOfGun.enemyInBoxs[i];
+            //        if (baseEnemy.healthPoint <= 0)
+            //        {
+            //            rangeOfGun.enemyInBoxs.Remove(baseEnemy);
+            //            baseEnemy = null;
+            //        }
+            //        else
+            //            break;
+            //    }
 
-                if(baseEnemy != null)
-                    GunShoot(baseEnemy.transform.position);
-                else if (rangeOfGun.enemyInBoxs.Count == 0)
-                {
-                    transform.localRotation = Quaternion.identity;
-                    //Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.5f);
-                }
-            }
-            else
+            //    if(baseEnemy != null)
+            //        GunShoot(baseEnemy.transform.position);
+            //    else if (rangeOfGun.enemyInBoxs.Count == 0)
+            //    {
+            //        transform.localRotation = Quaternion.identity;
+            //        //Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.5f);
+            //    }
+            //}
+            //else
+            //{
+            //    if (transform.localRotation != Quaternion.identity)
+            //    {
+            //        transform.localRotation  = Quaternion.Slerp(transform.localRotation, Quaternion.identity, Time.deltaTime);
+            //    }
+            //}
+            BaseEnemyObject baseEnemy = GetEnemyInRange();
+            if (baseEnemy != null)
+                GunShoot(baseEnemy.transform.position);
+            else if (rangeOfGun.enemyInBoxs.Count == 0)
             {
                 if (transform.localRotation != Quaternion.identity)
                 {
-                    transform.localRotation  = Quaternion.Slerp(transform.localRotation, Quaternion.identity, Time.deltaTime);
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.identity, Time.deltaTime);
                 }
+                //transform.localRotation = Quaternion.identity;
+                //Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.5f);
             }
         }
         
+    }
+
+    public BaseEnemyObject GetEnemyInRange()
+    {
+        BaseEnemyObject baseEnemy = null;
+        BaseEnemyObject baseEnemyTarget = null;
+        float minSpace = 0.0f;
+        if (rangeOfGun.enemyInBoxs.Count != 0)
+        {
+            minSpace = rangeOfGun.enemyInBoxs[0].transform.position.y;
+            baseEnemyTarget = rangeOfGun.enemyInBoxs[0];
+            for (int i = 0; i < rangeOfGun.enemyInBoxs.Count; ++i)
+            {
+                baseEnemy = rangeOfGun.enemyInBoxs[i];
+                if (baseEnemy.healthPoint <= 0)
+                {
+                    rangeOfGun.enemyInBoxs.Remove(baseEnemy);
+                }
+                else
+                {
+                    if (baseEnemy.transform.position.y < minSpace)
+                    {
+                        minSpace = baseEnemy.transform.position.y;
+                        baseEnemyTarget = baseEnemy;
+                    }
+                }
+            }
+
+            //if (baseEnemyTarget != null)
+            //    GunShoot(baseEnemyTarget.transform.position);
+            //else if (rangeOfGun.enemyInBoxs.Count == 0)
+            //{
+            //    transform.localRotation = Quaternion.identity;
+            //    //Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.5f);
+            //}
+        }
+        return baseEnemyTarget;
+
     }
 
     public void GunStop()

@@ -23,6 +23,10 @@ public class BaseGunObject : BaseObject {
 
     //Goc ban
     public float angleShoot; //Day la goc ban cua cay sung
+    // Co them damge, stun
+    public float critDamage; //Chi so crit damage
+    public float critDamagePercent; //ty le crit damage
+    public float stunPercent; // ty le stun
     //public Animator gunAnimator; //Animator cua gun
     //public float animationSpeed; //Toc do chuyen frame trang thai ban
     //public float totalFrame; //Tong so Frame
@@ -59,6 +63,8 @@ public class BaseGunObject : BaseObject {
         {
             //Tao mot vien dan tai day
             GameObject bullet = PoolCustomize.Instance.GetBaseObject(bulletOfGun, bulletSpawnPosition.position, "Bullet");
+            float randomStun = (float)(Random.Range(0, 100)) / 100;
+            float randomCrit = (float)(Random.Range(0, 100)) / 100;
             if (bullet != null)
             {
                 BaseBulletObject baseBullet = bullet.GetComponent<BaseBulletObject>();
@@ -67,6 +73,18 @@ public class BaseGunObject : BaseObject {
                 baseBullet.Damge = dameOfGun;
                 baseBullet.AngelShoot = angleShoot;
                 baseBullet.direction = directionOfShoot;
+                baseBullet.IsCritDamge = false;
+                baseBullet.CritDamge = 0.0f;
+                baseBullet.IsStun = false;
+                if (critDamagePercent >= randomCrit && critDamagePercent > 0)
+                {
+                    baseBullet.IsCritDamge = true;
+                    baseBullet.CritDamge = critDamage;
+                }
+                if (stunPercent >= randomStun && stunPercent > 0)
+                {
+                    baseBullet.IsStun = true;
+                }
                 baseBullet.InitObject();
                 quantumOfBullet -= 1;
                 //baseBullet.ResetValueOfAvariable();
