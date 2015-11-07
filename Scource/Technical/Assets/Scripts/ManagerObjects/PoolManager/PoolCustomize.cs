@@ -55,5 +55,23 @@ public class PoolCustomize : MonoSingleton<PoolCustomize> {
 #endif
         }
     }
+
+    public void HideBaseObject(GameObject _prefab, string poolName,float time)
+    {
+        if (PoolManager.Pools.ContainsKey(poolName))
+        {
+            SpawnPool spawPool = PoolManager.Pools[poolName];
+            if (spawPool.IsSpawned(_prefab.transform))
+            {
+                spawPool.Despawn(_prefab.transform,time);
+            }
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning("Khong co pool nay bo oi! Lay dau ra ma cat cho bo ha! Hehe");
+#endif
+        }
+    }
     
 }

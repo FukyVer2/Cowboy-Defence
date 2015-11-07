@@ -109,11 +109,18 @@ public class TankerEnemy : BaseEnemyObject {
     {
         this.healthPoint -=  damge;
         this.hpView.UpdateHealthPoint(healthPoint / healthBegin);
-        //
-        GameObject numberObj = ManagerObject.Instance.SpawnObject(BaseObjectType.OU_NUMBER, hitPosition.position, "Item");
-        Number number = numberObj.GetComponent<Number>();
-        number.Reset();
-        number.SetValue(damge.ToString());
+        try
+        {
+            //
+            GameObject numberObj = ManagerObject.Instance.SpawnObject(BaseObjectType.OU_NUMBER, hitPosition.position, "Item");
+            Number number = numberObj.GetComponent<Number>();
+            number.Reset();
+            number.SetValue(damge.ToString());
+        }
+        catch
+        {
+
+        }
     }
 
     public void AllowAttack()
@@ -243,8 +250,19 @@ public class TankerEnemy : BaseEnemyObject {
             wallTarget = baseWallObject;
             //baseWallObject.ReceiveDamge(this.damge);
         }
+        if(other.gameObject.tag == "Bom")
+        {
+            PoolCustomize.Instance.HideBaseObject(other.gameObject, "Item", 0.3f);
+            float timeRandom = Random.Range(0.2f, 0.7f);
+            Invoke("InstantialeParticalExplosion", timeRandom);
+            Debug.Log(timeRandom);
+        }
     }
 
+    public void InstantialeParticalExplosion()
+    {
+        ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_BOM_ITEM_EXPLOSION, transform.position);
+    }
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Wall")

@@ -45,7 +45,7 @@ public class FlightEnemy : MonoBehaviour {
     {
         isReleaseItem = true;
         positionBegin = transform.position;
-        StartCoroutine(WaitingMove(2f));
+        StartCoroutine(WaitingMove(10f));
     }
 
     float timer=0;
@@ -68,9 +68,10 @@ public class FlightEnemy : MonoBehaviour {
             if(isReleaseItem &&(timeDelay+=Time.deltaTime) >= timeReleaseItem)
             {
 #if UNITY_EDITOR
-                GameObject objItems = Instantiate(obj_Items) as GameObject;
-                obj_Items.transform.position = new Vector3(transform.position.x+1f,transform.position.y-0.5f,transform.position.z);
+                //GameObject objItems = Instantiate(obj_Items) as GameObject;
+                //objItems.transform.position = new Vector3(transform.position.x + 1.5f, transform.position.y -0.4f, transform.position.z);
 #endif
+                ManagerObject.Instance.SpawnItem(BaseObjectType.OBB_BOM_ITEM, new Vector3(transform.position.x + 1f, transform.position.y - 0.5f, 1));
                 isReleaseItem = false;
             }
         }
