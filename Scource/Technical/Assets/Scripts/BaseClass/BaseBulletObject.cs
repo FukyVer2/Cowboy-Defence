@@ -128,6 +128,12 @@ public abstract class BaseBulletObject : BaseMoveObject {
             if (bulletType == BaseBulletType.BL_SLOW)
             {
                 baseEnemy.effectRenderer.AddStatModifier(BaseStatModifierType.BSM_SLOW, 2.5f, 0.2f);
+                baseEnemy.SetColor(new Color(0, 0.5f, 0));
+            }
+            else
+            {
+                baseEnemy.SetColor(new Color(0.8f, 0.2f, 0.2f, 1f));
+                baseEnemy.ResetColor(0.5f);
             }
         }
         else if(other.tag =="Boss")

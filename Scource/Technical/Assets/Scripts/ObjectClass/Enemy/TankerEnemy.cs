@@ -22,7 +22,7 @@ public class TankerEnemy : BaseEnemyObject {
                 switch (direction)
                 {
                     case BaseDirectionType.UP:
-                        positionBegin.y += effectRenderer.GetStatModifier(BaseStatModifierType.BSM_SLOW)* vy * Time.deltaTime;
+                        positionBegin.y += effectRenderer.GetStatModifier(BaseStatModifierType.BSM_SLOW) * vy * Time.deltaTime;
                         break;
                     case BaseDirectionType.LEFT:
                         positionBegin.x -= effectRenderer.GetStatModifier(BaseStatModifierType.BSM_SLOW) * vx * Time.deltaTime;
@@ -57,6 +57,10 @@ public class TankerEnemy : BaseEnemyObject {
                 //vx *= effectRenderer.GetStatModifier(BaseStatModifierType.BSM_SLOW);
                 //vy *= effectRenderer.GetStatModifier(BaseStatModifierType.BSM_SLOW);
                 //Remove khi het thoi gian
+            }
+            else
+            {
+                this.SetColor(new Color(255, 255, 255));
             }
             //heffectRenderer.RemoveStatModifier(BaseStatModifierType.BSM_SLOW);
         }

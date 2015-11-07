@@ -21,6 +21,24 @@ public abstract class BaseEnemyObject : BaseMoveObject
     public EffectRenderer effectRenderer; //Quan ly viec sinh ra effect
     //
     public UIHealth hpView; //Hien thi thanh mau
+    //
+    public SpriteRenderer spriteRenderer;
+    public Color colorOld; //Mau truoc do cua sprite
+
+    public virtual void SetColor(Color _color)
+    {
+        spriteRenderer.color = _color;
+    }
+
+    public virtual void ResetColor()
+    {
+        this.SetColor(new Color(255, 255, 255));
+    }
+
+    public virtual void ResetColor(float _time)
+    {
+        Invoke("ResetColor", _time);
+    }
 
     public virtual void InitStateMachine()
     {
