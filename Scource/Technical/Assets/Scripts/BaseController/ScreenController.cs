@@ -49,6 +49,7 @@ public class ScreenController : MonoSingleton<ScreenController>
                     obj_MenuScreen.SetActive(true);
                     obj_GameOverScreen.SetActive(false);
                     obj_GamePlayScreen.SetActive(false);
+                    AudioManager.Instance.Play(BaseAudioType.BA_MENU_AUDIO, true);
                     break;
                 case StatusScreen.GameOverScreen:
                     obj_MenuScreen.SetActive(false);
@@ -59,6 +60,7 @@ public class ScreenController : MonoSingleton<ScreenController>
                     obj_MenuScreen.SetActive(false);
                     obj_GameOverScreen.SetActive(false);
                     obj_GamePlayScreen.SetActive(true);
+                    //AudioManager.Instance.Play(BaseAudioType.BA_GAMEPLAY_AUDIO, true);
                     break;
                 default:
                     break;

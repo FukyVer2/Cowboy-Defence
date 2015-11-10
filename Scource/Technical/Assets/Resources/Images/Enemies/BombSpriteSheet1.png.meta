@@ -1,12 +1,15 @@
 fileFormatVersion: 2
-guid: 73ad00621984987459555126fbbd853e
+guid: 4a30d9d387bada648814b159374975dc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: buller2_0
+    21300000: BombSpriteSheet1_0
+    21300002: BombSpriteSheet1_1
+    21300004: BombSpriteSheet1_2
+    21300006: BombSpriteSheet1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -44,15 +47,45 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: buller2_0
+    - name: BombSpriteSheet1_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 17
-        width: 9
-        height: 28
+        x: 19
+        y: 163
+        width: 88
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BombSpriteSheet1_1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 163
+        width: 88
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BombSpriteSheet1_2
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 163
+        width: 102
+        height: 114
+      alignment: 9
+      pivot: {x: .44512102, y: .569561601}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BombSpriteSheet1_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 41
+        width: 88
+        height: 112
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

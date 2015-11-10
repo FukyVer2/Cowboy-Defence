@@ -8,7 +8,6 @@ public class AudioManager : MonoSingleton<AudioManager> {
     public List<AudioConfig> audioResources;
     private Dictionary<BaseAudioType, AudioClip> dicAudioReSources;
     private bool isPause;
-
     void Awake()
     {
         dicAudioReSources = new Dictionary<BaseAudioType, AudioClip>();
@@ -26,7 +25,7 @@ public class AudioManager : MonoSingleton<AudioManager> {
         }
     }
 
-    private AudioClip GetSoundByType(BaseAudioType _audioType)
+    public AudioClip GetSoundByType(BaseAudioType _audioType)
     {
         if(dicAudioReSources.ContainsKey(_audioType))
         {
@@ -47,6 +46,15 @@ public class AudioManager : MonoSingleton<AudioManager> {
         }
     }
 
+    public void Stop(BaseAudioType _audioType)
+    {
+        AudioClip audio = GetSoundByType(_audioType);
+        if(audio!= null)
+        {
+            audioSource.clip = audio;
+            audioSource.Stop();
+        }
+    }
     public void PlayOneShot(BaseAudioType _audioType)
     {
         AudioClip audio = GetSoundByType(_audioType);

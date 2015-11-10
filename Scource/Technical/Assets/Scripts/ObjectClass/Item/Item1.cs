@@ -2,19 +2,22 @@
 using System.Collections;
 
 public class Item1 : BaseItemObject {
-    private bool isMove = true;
-    public bool isExplosion = false;
+    private bool isMove ;
+    public bool isExplosion;
 
+    private float timeDelay = 0.0f;
     public float timeWaitExplosion = 0.0f;
 
     public CircleCollider2D collider;
     public float damge = 0.0f;
-    public GameObject particalExplosion;
+
+    public GameObject objUmbrella;
     public override void InitObject()
     {
         isMove = true;
+        isExplosion = true;
         collider.enabled = false;
-        StartCoroutine(WaitExplosionBom(timeWaitExplosion));
+        //StartCoroutine(WaitExplosionBom(timeWaitExplosion));
         base.InitObject();
     }
 
@@ -22,6 +25,12 @@ public class Item1 : BaseItemObject {
     IEnumerator WaitExplosionBom(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        isMove = false;
+        collider.enabled = true;
+    }
+
+    void ExplosionBom()
+    {
         isMove = false;
         collider.enabled = true;
     }
@@ -42,24 +51,15 @@ public class Item1 : BaseItemObject {
         {
             Move();
         }
+        if(isMove && (timeDelay+= Time.deltaTime) >= timeWaitExplosion)
+        {
+            timeDelay = 0.0f;
+            objUmbrella.SetActive(false);
+            ExplosionBom();
+        }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        //if (col.gameObject.tag == "Enemy")
-        //{
-        //    BaseEnemyObject baseEnemy = col.gameObject.GetComponent<BaseEnemyObject>();
-        //    if (baseEnemy.healthPoint > 0)
-        //    {
-        //        ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_BOM_ITEM_EXPLOSION, col.gameObject.transform.position);
-        //        baseEnemy.ReceiveDamge(this.damge);
-        //        PoolCustomize.Instance.HideBaseObject(gameObject, "Item", 0.3f);
-        //    }
-        //}
-    }
-
-    IEnumerator waitingBom(float time,Vector3 pos)
-    {
-        yield return new WaitForSeconds(time);
-        Instantiate(particalExplosion, pos, Quaternion.identity);
+         
     }
 }

@@ -10,7 +10,7 @@ public class GameController : MonoSingleton<GameController> {
     public UIScore scoreView;
 	// Update is called once per frame
 	void Start () {
-        AudioManager.Instance.Play(BaseAudioType.BA_WORKD_AUDIO, true);
+        //AudioManager.Instance.Play(BaseAudioType.BA_WORKD_AUDIO, true);
         scoreView.UpdateScoreView(player.score);
 	}
 

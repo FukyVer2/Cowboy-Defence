@@ -44,12 +44,12 @@ public class Number : BaseObject {
     {
         Vector3 positionMove = positionBegin;
         positionMove.y += 5;
-        iTween.MoveTo(gameObject, iTween.Hash(iT.MoveTo.time, 1.0f,
+        iTween.MoveTo(gameObject, iTween.Hash(iT.MoveTo.time, 0.8f,
                                             iT.MoveTo.islocal, true,
                                             iT.MoveTo.position, positionMove,
                                             iT.MoveTo.easetype, iTween.EaseType.linear));
         //
-        iTween.ScaleTo(gameObject, iTween.Hash(iT.ScaleTo.time, 1.0f,
+        iTween.ScaleTo(gameObject, iTween.Hash(iT.ScaleTo.time, 0.8f,
                                          iT.ScaleTo.scale, new Vector3(0.4f, 0.4f, 0.4f),
                                          iT.ScaleTo.easetype, iTween.EaseType.linear,
                                          iT.ScaleTo.oncomplete, "OnComplete"));
