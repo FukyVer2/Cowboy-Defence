@@ -73,6 +73,7 @@ public class SpawnEnemyController : MonoSingleton<SpawnEnemyController> {
             //PoolCustomize.Instance.GetBaseObject(enemyPrefab, newPos, "Enemy");
             BaseEnemyObject baseEnemy = enemy.GetComponent<BaseEnemyObject>();
             baseEnemy.ResetValueOfAvariable();
+            baseEnemy.healthBegin += i * 50;
             enemyInScreen.Add(baseEnemy);
         }
         //isSpawn = false;

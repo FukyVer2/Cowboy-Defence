@@ -255,13 +255,16 @@ public class TankerEnemy : BaseEnemyObject {
             PoolCustomize.Instance.HideBaseObject(other.gameObject, "Item", 0.3f);
             float timeRandom = Random.Range(0.2f, 0.8f);
             Invoke("InstantialeParticalExplosion", timeRandom);
-            Debug.Log(timeRandom);
+            Item1 itemBom = other.gameObject.GetComponent<Item1>();
+            ReceiveDamge(itemBom.damge);
+            //Debug.Log(timeRandom);
         }
     }
 
     public void InstantialeParticalExplosion()
     {
-        AudioManager.Instance.Play(BaseAudioType.BA_ENEMY_BOM_ITEM,false);
+        //AudioManager.Instance.Play(BaseAudioType.BA_ENEMY_BOM_ITEM,false);
+        AudioSource.PlayClipAtPoint(AudioManager.Instance.GetSoundByType(BaseAudioType.BA_ENEMY_BOM_ITEM), transform.position);
         ManagerObject.Instance.SpawnPartical(BaseObjectType.OBP_BOM_ITEM_EXPLOSION, transform.position);
     }
     public void OnTriggerExit2D(Collider2D other)
