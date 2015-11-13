@@ -9,7 +9,7 @@ public class ResourceManager : MonoSingleton<ResourceManager> {
     void Awake()
     {
         //numberResources = new List<Sprite>();
-        LoadSpriteFromFile(ref numberResources, "Images/BackGround/number");
+        LoadSpriteFromFile(ref numberResources, "Images/BackGround/Number");
         Debug.Log("Resources: " +  numberResources.Count);
     }
 

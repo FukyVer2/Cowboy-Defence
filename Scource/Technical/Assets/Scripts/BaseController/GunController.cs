@@ -11,11 +11,10 @@ public class GunController : MonoBehaviour
     public bool isAutoShoot; // sung nay nhap tay giu nguyen thi ban
     private ControlGun gun;
     private Dictionary<BaseGunType, GameObject> dicGunResources; // loại đạn theo súng
-
     void Awake()
     {
         dicGunResources = new Dictionary<BaseGunType, GameObject>();
-        InitGun();
+        //InitGun();
     }
 
     public virtual void InitGun()
