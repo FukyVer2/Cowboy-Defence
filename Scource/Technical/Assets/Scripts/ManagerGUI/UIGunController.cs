@@ -6,6 +6,7 @@ public class UIGunController : MonoSingleton<UIGunController> {
 
     public List<UIGun> gunUI;
     private Dictionary<BaseGunType, UIGun> dicGunUI;
+
     void Awake()
     {
         dicGunUI = new Dictionary<BaseGunType, UIGun>();
